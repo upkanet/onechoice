@@ -3,16 +3,27 @@
 	<head>
 		<meta charset="UTF-8">
 		@section('css')
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		{{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css') }}
 		@show
-		<title></title>
+		<title>@yield('title')</title>
 	</head>
 	<body>
-		<h1></h1>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">OneChoice</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="#">Living Room</a></li>
+					<li><a href="#">Kitchen</a></li>
+					<li><a href="#">Nomade</a></li>
+				</ul>
+			</div>
+		</nav>
 		@yield('content')
 
 		@section('jscript')
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		{{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js') }}
 		@show
 	</body>
 </html>

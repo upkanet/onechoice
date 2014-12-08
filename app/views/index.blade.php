@@ -1,6 +1,10 @@
 @extends('layouts.master')
 
+@section('title')
+One Choice - Only the Good Product for each Need
+@stop
+
 
 @section('content')
-Hello World
+One Choice will be here soon
 @stop
