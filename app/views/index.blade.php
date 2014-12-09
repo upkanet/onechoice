@@ -6,6 +6,6 @@ One Choice - Only the Good Product for each Need
 
 
 @section('content')
-One Choice will be here soon
-Test on server
+One Choice will be here soon<br>
+Test on server 2
 @stop
