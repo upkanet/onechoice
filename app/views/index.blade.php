@@ -6,5 +6,6 @@ One Choice - Only the Good Product for each Need
 
 
 @section('content')
-One Choice will be here soon
+One Choice will be here soon<br>
+Environment : {{ App::environment() }}
 @stop
