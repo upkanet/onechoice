@@ -11,15 +11,29 @@
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">OneChoice</a>
+					<a class="navbar-brand" href="{{ URL::route('home') }}">OneChoice</a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="#">Living Room</a></li>
 					<li><a href="#">Kitchen</a></li>
 					<li><a href="#">Nomade</a></li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					@if(!Auth::check())
+						<li><a href="{{ URL::route('getLogin') }}">Admin</a></li>
+					@else
+						<li><a href="{{ URL::route('getLogout') }}">Logout</a></li>
+					@endif
+				</ul>
 			</div>
 		</nav>
+		@if(Session::has('success'))
+			<div class="alert alert-success">{{ Session::get('success') }}</div>
+		@elseif(Session::has('fail'))
+			<div class="alert alert-danger">{{ Session::get('fail') }}</div>
+		@elseif(Session::has('info'))
+			<div class="alert alert-info">{{ Session::get('info') }}</div>
+		@endif
 		@yield('content')
 
 		@section('jscript')

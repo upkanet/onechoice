@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
+//Home
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showWelcome'));
+
+//User
+Route::get('login', array('as' => 'getLogin', 'before' => 'guest', 'uses' => 'UserController@getLogin'));
+Route::get('logout', array('as' => 'getLogout', 'before' => 'auth', 'uses' => 'UserController@getLogout'));
+Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLogin'));
