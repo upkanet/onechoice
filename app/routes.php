@@ -21,3 +21,6 @@ Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLog
 
 //Category
 Route::resource('categories','CategoryController');
+
+//Dashboard
+Route::get('dashboard', array('as' => 'getDashboard', 'before' => 'auth', 'uses' => 'DashboardController@showDashboard'));

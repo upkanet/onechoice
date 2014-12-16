@@ -22,6 +22,7 @@
 					@if(!Auth::check())
 						<li><a href="{{ URL::route('getLogin') }}">Admin</a></li>
 					@else
+						<li><a href="{{ URL::route('getDashboard') }}">Dashboard</a></li>
 						<li><a href="{{ URL::route('getLogout') }}">Logout</a></li>
 					@endif
 				</ul>
