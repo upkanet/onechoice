@@ -5,6 +5,7 @@ Dashboard
 @stop
 
 
+
 @section('content')
 	<div class="list-group col-lg-3">
 		@foreach ($categories as $item)
@@ -12,6 +13,8 @@ Dashboard
 		@endforeach
 	</div>
 	<div>
-		{{ $rconnector->name }}
+		@foreach($products as $product)
+			{{$product['name']}} | {{$product['price']}} | {{$product['rating']}}<br>
+		@endforeach
 	</div>
 @stop
