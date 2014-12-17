@@ -8,10 +8,10 @@ class DashboardController extends BaseController{
 		$categories = Category::all();
 		$rconnector = Rconnector::find('2');
 
-		$products = $this->getProducts($rconnector);
+		//$products = $this->getProducts($rconnector);
 
 		return View::make('dashboard.main')
-			->with('products', $products)
+		//	->with('products', $products)
 			->with('categories', $categories);
 	}
 
@@ -46,6 +46,11 @@ class DashboardController extends BaseController{
 		}
 
 		return $products;
+	}
+
+	public function getConnectorsList($category_id){
+		$connectors = Rconnector::where('category_id','=',$category_id)->get();
+		return View::make('dashboard.connectors_list')->with('connectors',$connectors);
 	}
 
 }
