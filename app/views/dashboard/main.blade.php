@@ -40,6 +40,11 @@ Dashboard
 		</div>
 	</div>
 	<div class="col-lg-1">
-		<a href="#" class="btn btn-primary">Load </a>
+		<a href="#" class="btn btn-primary" id="loadProdListBtn">Load </a>
 	</div>
+@stop
+
+@section('jscript')
+	@parent
+	{{ HTML::script('js/dashboard.js') }}
 @stop

@@ -48,9 +48,6 @@ class DashboardController extends BaseController{
 		return $products;
 	}
 
-	public function getConnectorsList($category_id){
-		$connectors = Rconnector::where('category_id','=',$category_id)->get();
-		return View::make('dashboard.connectors_list')->with('connectors',$connectors);
-	}
+	
 
 }

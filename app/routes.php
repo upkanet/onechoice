@@ -24,4 +24,4 @@ Route::resource('categories','CategoryController');
 
 //Dashboard
 Route::get('dashboard', array('as' => 'getDashboard', 'before' => 'auth', 'uses' => 'DashboardController@showDashboard'));
-Route::get('dashboard/connectors/{catetory_id}', array('as' => 'getConnectors', 'uses' => 'DashboardController@getConnectorsList'));
+Route::get('dashboard/connectors/{id}', array('as' => 'getConnectors', 'uses' => 'CategoryController@getConnectorsList'));

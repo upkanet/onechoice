@@ -38,6 +38,7 @@
 		@yield('content')
 
 		@section('jscript')
+		{{ HTML::script('//code.jquery.com/jquery-2.1.2.min.js') }}
 		{{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js') }}
 		@show
 	</body>

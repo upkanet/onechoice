@@ -83,4 +83,10 @@ class CategoryController extends BaseController {
 	}
 
 
+	public function getConnectorsList($id){
+		$connectors = Rconnector::where('category_id','=',$id)->get();
+		return View::make('dashboard.connectors_list')->with('connectors',$connectors);
+	}
+
+
 }
