@@ -14,6 +14,12 @@ function getSelectedConnectors(){
 	selCon.each(function(index){
 		selConList[index] = $( this ).val();
 	});
-	console.log(selConList);
+	return selConList.join();
 }
-$("#loadProdListBtn").click(getSelectedConnectors);
+function listProducts(){
+	rconnector_list = getSelectedConnectors();
+	$.get('dashboard/products/'+rconnector_list,function(data){
+		$("#products_list").html(data);
+	});
+}
+$("#loadProdListBtn").click(listProducts);

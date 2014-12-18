@@ -10,7 +10,7 @@ class RconnectorsTableSeeder extends Seeder {
 			'prod_list_url' => 'http://www.cnet.com/topics/tvs/best-tvs/',
 			'prod_list_code' => '$html->find(\'div.prodDetail\')',
 			'prod_name_code' => '$element->find(\'h2\',0)->plaintext',
-			'prod_price_code' => '$element->find(\'a.price\',0)->plaintext',
+			'prod_price_code' => 'str_replace(",","",current(array_slice(explode(" ",substr(trim($element->find(\'a.price\',0)->plaintext),1)), 0,1)))',
 			'prod_rating_code' => '$element->find(\'span.rating\',0)->plaintext',
 			'category_id' => '1'
 		));

@@ -42,6 +42,21 @@ Dashboard
 	<div class="col-lg-1">
 		<a href="#" class="btn btn-primary" id="loadProdListBtn">Load </a>
 	</div>
+		<div class="col-lg-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Products</h3>
+			</div>
+			<div class="panel-body" id="products_list">
+	
+			</div>
+			<div class="panel-footer">
+				<a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
+				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+			</div>
+		</div>
+	</div>
 @stop
 
 @section('jscript')

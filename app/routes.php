@@ -23,5 +23,6 @@ Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLog
 Route::resource('categories','CategoryController');
 
 //Dashboard
-Route::get('dashboard', array('as' => 'getDashboard', 'before' => 'auth', 'uses' => 'DashboardController@showDashboard'));
+Route::get('dashboard/', array('as' => 'getDashboard', 'before' => 'auth', 'uses' => 'DashboardController@showDashboard'));
 Route::get('dashboard/connectors/{id}', array('as' => 'getConnectors', 'uses' => 'CategoryController@getConnectorsList'));
+Route::get('dashboard/products/{ids}', array('as' => 'getProducts', 'uses' => 'RconnectorController@getAllProducts'));
