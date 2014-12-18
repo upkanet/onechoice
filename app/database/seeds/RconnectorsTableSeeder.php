@@ -21,7 +21,7 @@ class RconnectorsTableSeeder extends Seeder {
 			'prod_list_code' => '$html->find(\'ul.product-grid\',0)->find(\'li\')',
 			'prod_name_code' => '$element->find(\'a.product-name\',0)->title',
 			'prod_price_code' => '0',
-			'prod_rating_code' => '$element->find(\'span.product-scores\',0)->plaintext',
+			'prod_rating_code' => 'round($element->find(\'span.product-scores\',0)->plaintext/100*5,1)',
 			'category_id' => '1'
 		));
 	}
