@@ -115,4 +115,34 @@ class RconnectorController extends BaseController{
 
 	}
 
+	public function create(){
+		$category_id = Input::get('category_id');
+		if(trim($category_id)=="") return 'First select a category';
+		return View::make('dashboard.create_connector')
+				->with('category_id', $category_id);
+	}
+
+	public function store(){
+
+		//$validate = Validator::make(Input::all())
+
+
+		$rconnector = new Rconnector();
+		$rconnector->category_id = Input::get('category_id');
+		$rconnector->name = Input::get('name');
+		$rconnector->prod_list_url = Input::get('prod_list_url');
+		$rconnector->prod_list_code = Input::get('prod_list_code');
+		$rconnector->prod_name_code = Input::get('prod_name_code');
+		$rconnector->prod_price_code = Input::get('prod_price_code');
+		$rconnector->prod_rating_code = Input::get('prod_rating_code');
+
+		if($rconnector->save()){
+			return Redirect::route('dashboard')->with('success', 'Connector added successfully');
+		}
+		else{
+			return Redirect::route('dashboard')->with('fail', 'Error while adding connector');
+		}
+
+	}
+
 }

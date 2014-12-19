@@ -33,7 +33,7 @@ Dashboard
 				&nbsp;
 			</div>
 			<div class="panel-footer">
-				<a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
+				<a href="javascript:addConnector();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
 				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
@@ -56,6 +56,22 @@ Dashboard
 				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
+	</div>
+
+	<!-- Dashboard Modal -->
+	<div class="modal fade" id="dashboardModal" tabindex="-1" role="dialog" aria-labelledby="dashboardModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="dashboardModalLabel"></h4>
+	      </div>
+	      <div class="modal-body" id="dashboardModalBody">
+	      </div>
+	      <div class="modal-footer" id="dashboardModalFooter">
+	      </div>
+	    </div>
+	  </div>
 	</div>
 @stop
 
