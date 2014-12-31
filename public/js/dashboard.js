@@ -23,21 +23,28 @@ function listProducts(){
 	});
 }
 $("#loadProdListBtn").click(listProducts);
-function addConnector(){
+function createConnector(){
 	var catId = $("input[name='category']:checked").val();
 	if(typeof catId === 'undefined') catId = '';
-	var btnAdd = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="sendConnector()">Add</button>';
+	var btnAdd = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeConnector()">Add</button>';
 
 	if(catId != ''){
 		$.get('dashboard/connectors/create?category_id='+catId, function(data){
-			setDashboardModal('Add connector', data, btnAdd);
+			setDashboardModal('Create Connector', data, btnAdd);
 		});
 	}
-	else {setDashboardModal('Add connector', 'First select a category', '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');}
+	else {setDashboardModal('Create Connector', 'First select a category', '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');}
 	$('#dashboardModal').modal('toggle');
 }
-function sendConnector(){
-	$('#add_connector').submit();
+function storeConnector(){
+	$('#createConnector').submit();
+}
+function editConnector(){
+	var connId = $("#connectors_list option:selected").val();
+	$.get('dashboard/connectors/'+connId+'/edit', function(data){
+		setDashboardModal('Edit Connector', data, 'test');
+	});
+	$('#dashboardModal').modal('toggle');
 }
 
 //modal

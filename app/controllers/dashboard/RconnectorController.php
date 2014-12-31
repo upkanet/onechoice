@@ -145,4 +145,14 @@ class RconnectorController extends BaseController{
 
 	}
 
+	public function edit($id){
+		$rconnector = Rconnector::FindOrFail($id);
+		echo $rconnector->name;
+	}
+
+	public function update($id)
+	{
+
+	}
+
 }

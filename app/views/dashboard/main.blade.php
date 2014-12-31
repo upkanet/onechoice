@@ -29,13 +29,14 @@ Dashboard
 			<div class="panel-heading">
 				<h3 class="panel-title">Connectors</h3>
 			</div>
-			<div class="panel-body" id="connectors_list">
-				&nbsp;
+			<div class="panel-body">
+				<select name="connectors" multiple class="form-control"  id="connectors_list">
+				</select>
 			</div>
 			<div class="panel-footer">
-				<a href="javascript:addConnector();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
+				<a href="javascript:createConnector();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
 				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
-				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+				<a href="javascript:editConnector();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
 	</div>
