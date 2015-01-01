@@ -18,8 +18,12 @@ function getSelectedConnectors(){
 }
 function listProducts(){
 	rconnector_list = getSelectedConnectors();
+
+	$("#loadProdListBtn").html("<span class=\"glyphicon glyphicon-refresh\"></span>");
+
 	$.get('dashboard/products/'+rconnector_list,function(data){
 		$("#products_list").html(data);
+		$("#loadProdListBtn").text("Load");
 	});
 }
 $("#loadProdListBtn").click(listProducts);
@@ -61,4 +65,10 @@ function setDashboardModal(title, body, footer){
 	$('#dashboardModalLabel').html(title);
 	$('#dashboardModalBody').html(body);
 	$('#dashboardModalFooter').html(footer);
+}
+
+//Product
+function selectProd(name){
+	$('#productName').val(name);
+	$('#googleLink').prop("href", 'https://www.google.fr/#q='+name);
 }

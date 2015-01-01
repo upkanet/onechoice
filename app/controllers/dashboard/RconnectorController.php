@@ -61,7 +61,7 @@ class RconnectorController extends BaseController{
 		$math['price'] = $this->getAvgMean($products_list,'price');
 		$math['rating'] = $this->getAvgMean($products_list,'rating');
 
-		$coeff = ['price' => 0.6, 'rating' => 0.4];
+		$coeff = ['price' => 0.3, 'rating' => 0.7];
 
 		foreach ($products_list as $product) {
 			$new_product = $product;
@@ -107,9 +107,11 @@ class RconnectorController extends BaseController{
 		$products_list = $this->sortProducts($products_list);
 
 		$math['price'] = $this->getAvgMean($products_list,'price');
+		$math['rating'] = $this->getAvgMean($products_list,'rating');
 
 		return View::make('dashboard.products_list')
 				->with('avg_price', $math['price']['avg'])
+				->with('avg_rating', $math['rating']['avg'])
 				->with('products_list', $products_list);
 
 
