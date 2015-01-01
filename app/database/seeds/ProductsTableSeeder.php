@@ -9,6 +9,7 @@ class ProductsTableSeeder extends Seeder {
 			'category_id' => 1,
 			'name' => 'Sony BZQ47',
 			'permalink' => 'sony_bzq47',
+			'img_path' => '/img/products/20150101213627.png',
 			'arg1' => 'It is good',
 			'arg2' => 'Lorem ipsum et caetera',
 			'arg3' => 'Sum qui pro que',
@@ -22,6 +23,7 @@ class ProductsTableSeeder extends Seeder {
 			'art2_url' => 'http://www.engadget.com/products/samsung/e6500-series/',
 			'art3' => 'Gizmodo Review',
 			'art3_url' => 'http://gizmodo.com/4k-tv-throwdown-part-one-how-the-sharp-ud27-stacks-up-1672424909',
+			'isActive' => 1,
 		));
 	}
 }

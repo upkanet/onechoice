@@ -2,6 +2,12 @@
 
 class ProductController extends BaseController{
 
+	public function index($category_id){
+		$products = Product::where('category_id','=',$category_id)->take(10)->orderBy('created_at','desc')->get();
+
+		return View::make('dashboard.products')
+				->with('products',$products);
+	}
 
 	public function show($category,$permalink){
 
@@ -30,7 +36,19 @@ class ProductController extends BaseController{
 		$product->arg6 = Input::get('argument6');
 		$product->arg7 = Input::get('argument7');
 
-		$product->save();
+		$product->art1 = Input::get('art1');
+		$product->art1_url = Input::get('art1_url');
+		$product->art2 = Input::get('art2');
+		$product->art2_url = Input::get('art2_url');
+		$product->art3 = Input::get('art3');
+		$product->art3_url = Input::get('art3_url');
+
+		if($product->save()){
+			return Redirect::route('dashboard')->with('success','Product added');
+		}
+		else{
+			return Redirect::route('dashboard')->with('error','An error occured while adding product');
+		}
 	}
 
 	private function getImg($imgdata){

@@ -6,7 +6,7 @@
 		{{Form::hidden('category_id','')}}
 		<div class="panel-body">
 			<div class="form-group">
-				<a href="#" id="googleLink" class="btn btn-primary" target="_new">Google It</a>
+				<a href="#" id="googleLink" class="btn btn-info btn-block" target="_new">Google It</a>
 			</div>
 			<div class="form-group">
 				{{Form::text('name','', array('class' => 'form-control', 'placeholder' => 'Name', 'id' => 'productName'))}}
@@ -36,9 +36,20 @@
 				{{Form::text('argument6','', array('class' => 'form-control', 'placeholder' => 'Argument #6'))}}
 				{{Form::text('argument7','', array('class' => 'form-control', 'placeholder' => 'Argument #7'))}}
 			</div>
+			<div class="form-group">
+				{{Form::label('articles', 'Articles')}}
+				{{Form::text('art1','', array('class' => 'form-control', 'placeholder' => 'Article #1'))}}
+				{{Form::text('art1_url','', array('class' => 'form-control', 'placeholder' => 'url'))}}
+				<br>
+				{{Form::text('art2','', array('class' => 'form-control', 'placeholder' => 'Article #2'))}}
+				{{Form::text('art2_url','', array('class' => 'form-control', 'placeholder' => 'url'))}}
+				<br>
+				{{Form::text('art3','', array('class' => 'form-control', 'placeholder' => 'Article #3'))}}
+				{{Form::text('art3_url','', array('class' => 'form-control', 'placeholder' => 'url'))}}
+			</div>
 		</div>
 	{{Form::close()}}
 	<div class="panel-footer">
-		<a href="#" class="btn btn-primary" id="createProductSend">Create</a> 
+		<a href="#" class="btn btn-primary btn-block" id="createProductSend">Create</a> 
 	</div>
 </div>

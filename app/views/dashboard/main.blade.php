@@ -27,7 +27,7 @@ Dashboard
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-2">
+	<div class="col-lg-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Connectors</h3>
@@ -40,6 +40,17 @@ Dashboard
 				<a href="javascript:createConnector();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
 				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="javascript:editConnector();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Products</h3>
+			</div>
+			<div class="panel-body" id="products_list_cat">
+
+			</div>
+			<div class="panel-footer">
+				<a href="#" class="btn btn-warning btn-block">Activate</a>
 			</div>
 		</div>
 	</div>
@@ -55,7 +66,7 @@ Dashboard
 	
 			</div>
 			<div class="panel-footer">
-				&nbsp;
+				 &nbsp;
 			</div>
 		</div>
 	</div>

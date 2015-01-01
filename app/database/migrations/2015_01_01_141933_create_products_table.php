@@ -40,6 +40,9 @@ class CreateProductsTable extends Migration {
 			$table->string('art3');
 			$table->string('art3_url');
 
+			//Active
+			$table->boolean('isActive')->default(0);
+
 			//Timestamps
 			$table->timestamps();
 

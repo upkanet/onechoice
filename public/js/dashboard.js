@@ -1,10 +1,15 @@
 
-//Category to Connectors
+//Category to Connectors and Products List
 $("input[name='category']").click(function(){
 	var catId = $("input[name='category']:checked").val();
 	$.get('dashboard/connectors/'+catId, function(data){
 		$("#connectors_list").html(data);
 	});
+
+	$.get('dashboard/products_by_cat/'+catId, function(data){
+		$("#products_list_cat").html(data);
+	});
+
 });
 
 //Connectors to Product List
@@ -72,6 +77,13 @@ function selectProd(name){
 	$('#productName').val(name);
 	$('#googleLink').prop("href", 'https://www.google.fr/#q='+name);
 }
+
+//Permalink
+$('input[name=permalink]').click(function(){
+	if($(this).val() == ''){
+		$(this).val($('#productName').val().replace(/\s+/g, '-').toLowerCase());
+	}
+});
 
 //Image
 $(function() {
