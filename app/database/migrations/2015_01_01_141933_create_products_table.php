@@ -17,17 +17,20 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
 			$table->integer('category_id')->unsigned();
 			$table->foreign('category_id')->references('id')->on('categories');
-			$table->string('name');
-			$table->string('permalink')->unique();
+			$table->string('name')->required();
+			$table->string('permalink')->unique()->required();
+
+			//Picture
+			$table->string('img_path')->required();
 
 			//Arguments
-			$table->string('arg1');
-			$table->string('arg2');
-			$table->string('arg3');
-			$table->string('arg4');
-			$table->string('arg5');
-			$table->string('arg6');
-			$table->string('arg7');
+			$table->string('arg1')->required();
+			$table->string('arg2')->required();
+			$table->string('arg3')->required();
+			$table->string('arg4')->required();
+			$table->string('arg5')->required();
+			$table->string('arg6')->required();
+			$table->string('arg7')->required();
 
 			//Articles
 			$table->string('art1');

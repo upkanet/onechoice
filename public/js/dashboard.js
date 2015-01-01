@@ -72,3 +72,16 @@ function selectProd(name){
 	$('#productName').val(name);
 	$('#googleLink').prop("href", 'https://www.google.fr/#q='+name);
 }
+
+//Image
+$(function() {
+	$('.image-editor').cropit();
+});
+
+$('#createProductSend').click(function(){
+	var catId = $("input[name='category']:checked").val();
+	var img = $('.image-editor').cropit('export');
+	$('input[name=category_id]').val(catId);
+	$('input[name=imgdata]').val(img);
+	$('#createProductForm').submit();	
+});

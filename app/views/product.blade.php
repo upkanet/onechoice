@@ -17,7 +17,7 @@ Lone Good - {{ $category }} - {{ $product->name }}
 		<div class="container">
 			<div class="col-lg-2 text-right">
 				<br>
-				<img src="http://img.achetezfacile.com/photo/07306962.jpg" width="146" height="110" class="imgproduct">
+				<img src="{{ $product->img_path }}" width="235" height="177" class="imgproduct">
 			</div>
 			<div class="col-lg-10">
 				<br>
@@ -25,7 +25,7 @@ Lone Good - {{ $category }} - {{ $product->name }}
 				<br>
 				<br>
 			</div>
-			<h2 class="col-lg-6 titleproduct">Samsung BZQ47</h2>
+			<h2 class="col-lg-6 titleproduct">{{ $product->name }}</h2>
 		</div>
 	</div>
 </div>
