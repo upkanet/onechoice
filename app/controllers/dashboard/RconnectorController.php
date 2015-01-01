@@ -147,11 +147,27 @@ class RconnectorController extends BaseController{
 
 	public function edit($id){
 		$rconnector = Rconnector::FindOrFail($id);
-		echo $rconnector->name;
+		return View::make('dashboard.edit_connector')
+				->with('rconnector', $rconnector);
 	}
 
 	public function update($id)
 	{
+		$rconnector = Rconnector::find(Input::get('id'));
+
+		$rconnector->name = Input::get('name');
+		$rconnector->prod_list_url = Input::get('prod_list_url');
+		$rconnector->prod_list_code = Input::get('prod_list_code');
+		$rconnector->prod_name_code = Input::get('prod_name_code');
+		$rconnector->prod_price_code = Input::get('prod_price_code');
+		$rconnector->prod_rating_code = Input::get('prod_rating_code');
+
+		if($rconnector->save()){
+			return Redirect::route('dashboard')->with('success', 'Connector updated successfully');
+		}
+		else{
+			return Redirect::route('dashboard')->with('fail', 'Error while updating connector');
+		}
 
 	}
 

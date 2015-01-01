@@ -29,3 +29,4 @@ Route::get('dashboard/products/{ids}', array('as' => 'getProducts', 'uses' => 'R
 Route::get('dashboard/connectors/create', array('as' => 'createConnector', 'uses' => 'RconnectorController@create'));
 Route::post('dashboard/connectors/store', array('as' => 'storeConnector', 'uses' => 'RconnectorController@store'));
 Route::get('dashboard/connectors/{id}/edit', array('as' => 'editConnector', 'uses' => 'RconnectorController@edit'))->where('id', '[0-9]+');
+Route::put('dashboard/connectors/{id}', array('as' => 'updateConnector', 'uses' => 'RconnectorController@update'))->where('id', '[0-9]+');

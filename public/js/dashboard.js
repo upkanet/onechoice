@@ -41,10 +41,19 @@ function storeConnector(){
 }
 function editConnector(){
 	var connId = $("#connectors_list option:selected").val();
-	$.get('dashboard/connectors/'+connId+'/edit', function(data){
-		setDashboardModal('Edit Connector', data, 'test');
-	});
+	if(typeof connId === 'undefined') connId = '';
+	var btnCreate = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateConnector()">Update</button>';
+
+	if(connId != ''){
+		$.get('dashboard/connectors/'+connId+'/edit', function(data){
+			setDashboardModal('Edit Connector', data, btnCreate);
+		});
+	}
+	else {setDashboardModal('Edit Connector', 'First select a connector', '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');}
 	$('#dashboardModal').modal('toggle');
+}
+function updateConnector(){
+	$('#editConnector').submit();
 }
 
 //modal
