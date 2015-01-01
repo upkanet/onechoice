@@ -6,10 +6,12 @@ class CategoriesTableSeeder extends Seeder {
 	{
 		DB::table('categories')->delete();
 		Category::create(array(
-			'name' => 'TV'
+			'name' => 'TV',
+			'permalink' => 'tv'
 		));
 		Category::create(array(
-			'name' => 'PC'
+			'name' => 'PC',
+			'permalink' => 'pc'
 		));
 	}
 	

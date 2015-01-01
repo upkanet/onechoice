@@ -17,7 +17,9 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('index');
+		$products = Product::where('isActive','=',1)->take(12)->get();
+		return View::make('index')
+				->with('products',$products);
 	}
 
 }

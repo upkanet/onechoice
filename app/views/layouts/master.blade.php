@@ -38,7 +38,7 @@
 		@yield('content')
 
 		<div class="container text-center">
-			LoneGood 2015
+			LoneGood 2015 | Environment : {{ App::environment() }}
 		</div>
 
 
