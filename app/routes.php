@@ -22,6 +22,9 @@ Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLog
 //Category
 Route::resource('categories','CategoryController');
 
+//Product
+Route::get('{category}/{permalink}', ['uses' => 'ProductController@show']);
+
 //Dashboard
 Route::get('dashboard', array('as' => 'dashboard', 'before' => 'auth', 'uses' => 'DashboardController@showDashboard'));
 Route::get('dashboard/connectors/{id}', array('as' => 'getConnectors', 'uses' => 'CategoryController@getConnectorsList'))->where('id', '[0-9]+');

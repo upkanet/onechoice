@@ -37,6 +37,11 @@
 		@endif
 		@yield('content')
 
+		<div class="container text-center">
+			LoneGood 2015
+		</div>
+
+
 		@section('jscript')
 		{{ HTML::script('//code.jquery.com/jquery-2.1.2.min.js') }}
 		{{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js') }}
