@@ -7,4 +7,9 @@ class Product extends Eloquent{
 	{
 		return $this->belongsTo('Category');
 	}
+
+	public function scopeActivated($query)
+	{
+		return $query->where('isActive','=',1);
+	}
 }

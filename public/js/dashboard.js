@@ -67,7 +67,23 @@ function updateConnector(){
 //Activate
 function activateProduct(){
 	var prodId = $("input[name=product_activate]:checked").val();
-	console.log(prodId);
+	
+	var btnActivate = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="activateProductSend(' + prodId + ')">Activate</button>';
+
+	$.get('dashboard/activate/'+prodId, function(data){
+		setDashboardModal('Activate Product',data,btnActivate);
+	});
+	$('#dashboardModal').modal('toggle');
+}
+function activateProductSend(prodId){
+	$.post('dashboard/activate/'+prodId, function(data){
+		if(data['success']){
+			setDashboardModal('Activate Product','Activated','<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
+		}
+		else{
+
+		}
+	}, 'json');	
 }
 
 //modal

@@ -67,4 +67,29 @@ class ProductController extends BaseController{
 		return $path;
 	}
 
+	public function activateForm($product_id){
+		$product = Product::find($product_id);
+		return View::make('dashboard.activate')
+				->with('product', $product);
+	}
+
+	public function activate($product_id){
+		$result = ['success' => 0];
+
+		$product = Product::find($product_id);
+		$product->isActive = 1;
+
+		$this->desactivate($product->category_id);
+
+		if($product->save()){
+			$result['success'] = 1;
+		}
+		$result = json_encode($result);
+		return $result;
+	}
+
+	private function desactivate($category_id){
+		$affectedRows = Product::activated()->where('category_id','=',$category_id)->update(['isActive' => 0]);
+	}
+
 }
