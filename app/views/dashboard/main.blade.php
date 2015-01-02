@@ -27,10 +27,10 @@ Dashboard
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Connectors</h3>
+				<h3 class="panel-title">Connectors for the category</h3>
 			</div>
 			<div class="panel-body">
 				<select name="connectors" multiple class="form-control"  id="connectors_list">
@@ -44,20 +44,19 @@ Dashboard
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Products</h3>
+				<h3 class="panel-title">Products listed in category</h3>
 			</div>
 			<div class="panel-body" id="products_list_cat">
 
 			</div>
 			<div class="panel-footer">
-				<a href="#" class="btn btn-warning btn-block">Activate</a>
+				<a href="javascript:activateProduct();" class="btn btn-warning btn-block">Activate</a>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-1">
-		<a href="#" class="btn btn-primary" id="loadProdListBtn">Load </a>
-	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-2">
+		<a href="#" class="btn btn-primary btn-block" id="loadProdListBtn">Load</a><br>
+		<br>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Products List</h3>
@@ -70,7 +69,7 @@ Dashboard
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-6">
 		@include('dashboard.create_product')
 	</div>
 

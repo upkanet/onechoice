@@ -64,6 +64,11 @@ function editConnector(){
 function updateConnector(){
 	$('#editConnector').submit();
 }
+//Activate
+function activateProduct(){
+	var prodId = $("input[name=product_activate]:checked").val();
+	console.log(prodId);
+}
 
 //modal
 function setDashboardModal(title, body, footer){

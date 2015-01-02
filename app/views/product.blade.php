@@ -15,11 +15,12 @@ Lone Good - {{ $category }} - {{ $product->name }}
 		<br>
 		<br>
 		<div class="container">
-			<div class="col-lg-2 text-right">
-				<br>
+			<div class="col-lg-3 text-right">
 				<img src="{{ $product->img_path }}" width="235" height="177" class="imgproduct">
 			</div>
-			<div class="col-lg-10">
+			<div class="col-lg-9">
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
