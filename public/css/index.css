@@ -1,14 +1,23 @@
 .thprodname{
 	position: absolute;
-	top: 80px;
-	left: 30px;
+	bottom: 20px;
+	left: 15px;
 	color: white;
-	text-shadow: 0 0 2px black;
+	/*text-shadow: 0 0 2px black;*/
+	text-shadow: -1px 0 #555555, 0 1px #555555, 1px 0 #555555, 0 -1px #555555;
+	border-radius: 4px;
+	background-image: url('/img/vignette-gradient.png');
+	width: 235px;
+	padding-left: 10px;
 }
 
-.thshadow{
+.thprodname h3{
+	font-weight: bold;
+	text-shadow: -1px 0 #555555, 0 1px #555555, 1px 0 #555555, 0 -1px #555555;
+}
+
+.thbox{
 	height: 177px;
 	width: 235px;
-	/*box-shadow: 0 -15px 15px 0px rgba(0,0,0,0.5) inset;*/
-	box-shadow: 0 0 15px black;
+	/*box-shadow: 0 0 15px black;*/
 }
