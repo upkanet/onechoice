@@ -39,35 +39,37 @@ class RconnectorController extends BaseController{
 		return $products;
 	}
 
-	private function getAvgMean(array $products_list, $param)
+	private function getAvgMax(array $products_list, $param)
 	{
 		$avg = 0;
-		$mean = 0;
+		$max = 0;
 
 		foreach ($products_list as $product) {
 			$avg += $product[$param];
-			$mean += $product[$param] * $product[$param];
+			if($product[$param] > $max){
+				$max = $product[$param];
+			}
 		}
 
 		$avg = round($avg / count($products_list),2);
-		$mean = round(sqrt(($mean/count($products_list) - $avg*$avg)),2);
 		
-		return ["avg" => $avg, "mean" => $mean];
+		return ["avg" => $avg, "max" => $max];
 	}
 
 	private function addScore(array $products_list)
 	{
 		$new_products_list = array();
-		$math['price'] = $this->getAvgMean($products_list,'price');
-		$math['rating'] = $this->getAvgMean($products_list,'rating');
-
-		$coeff = ['price' => 0.3, 'rating' => 0.7];
+		$math['price'] = $this->getAvgMax($products_list,'price');
+		$math['rating'] = $this->getAvgMax($products_list,'rating');
 
 		foreach ($products_list as $product) {
 			$new_product = $product;
 			if($product['price'] != 0){
+				$pricePart = round(exp( -1 * abs( $product['price'] - $math['price']['avg'] ) / $math['price']['avg'] ),2);
+				$ratingPart = round($product['rating'] / $math['rating']['max'],2);
+
 				$new_product['score'] = 
-				round($coeff['rating'] * $product['rating']/$math['rating']['avg'] * $coeff['price'] * $math['price']['avg'] / abs($product['price'] - $math['price']['avg']),2);	
+				round( ($ratingPart + $pricePart) / 2 ,2 ) * 100;	
 			}
 			else{
 				$new_product['score'] = 0;
@@ -106,8 +108,8 @@ class RconnectorController extends BaseController{
 
 		$products_list = $this->sortProducts($products_list);
 
-		$math['price'] = $this->getAvgMean($products_list,'price');
-		$math['rating'] = $this->getAvgMean($products_list,'rating');
+		$math['price'] = $this->getAvgMax($products_list,'price');
+		$math['rating'] = $this->getAvgMax($products_list,'rating');
 
 		return View::make('dashboard.products_list')
 				->with('avg_price', $math['price']['avg'])
