@@ -5,7 +5,13 @@
 .bgproduct
 {
 	background: url('http://fc08.deviantart.net/fs44/f/2009/056/d/c/Wall_of_Televisions_by_Loops_Of_Fury.jpg') no-repeat center center;
-	box-shadow: 0 -15px 15px 0px rgba(0,0,0,0.5) inset;
+	/*box-shadow: 0 -15px 15px 0px rgba(0,0,0,0.5) inset;*/
+}
+
+.prodshadow
+{
+	background: url('/img/vignette-gradient-big.png') bottom;
+	background-repeat: repeat-x;
 }
 
 .titleproduct

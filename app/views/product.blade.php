@@ -12,21 +12,23 @@ Lone Good - {{ $category }} - {{ $product->name }}
 @section('content')
 <div class="container-fluid">
 	<div class="row bgproduct">
-		<br>
-		<br>
-		<div class="container">
-			<div class="col-lg-3 text-right">
-				<img src="{{ $product->img_path }}" width="235" height="177" class="imgproduct">
+		<div class="prodshadow">
+			<br>
+			<br>
+			<div class="container">
+				<div class="col-lg-3 text-right">
+					<img src="{{ $product->img_path }}" width="235" height="177" class="imgproduct">
+				</div>
+				<div class="col-lg-9">
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</div>
+				<h2 class="col-lg-6 titleproduct">{{ $product->name }}</h2>
 			</div>
-			<div class="col-lg-9">
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-			</div>
-			<h2 class="col-lg-6 titleproduct">{{ $product->name }}</h2>
 		</div>
 	</div>
 </div>
