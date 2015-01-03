@@ -19,10 +19,11 @@ Dashboard
 				@foreach ($categories as $item)
 				{{ Form::radio('category', $item->id) }} {{ $item->name }}<br>
 				@endforeach
+				{{ Form::token() }}
 			</div>
 			<div class="panel-footer">
-				<a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
-				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="javascript:createCategory();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
+				<a href="javascript:destroyCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>

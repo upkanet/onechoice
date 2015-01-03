@@ -1,3 +1,40 @@
+//Categories
+function createCategory(){
+	var btnCreateCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeCategory()">Add</button>';
+	$.get('categories/create', function(data){
+		setDashboardModal('Create Category', data, btnCreateCat);
+	});
+	$('#dashboardModal').modal('toggle');
+}
+function storeCategory(){
+	var form = $('form[name=create_category]');
+	var datas = form.serialize();
+	$.ajax({
+		type: 'POST',
+		url: form.attr('action'),
+		data: datas,
+		success: function(msg){
+			location.reload();
+		}
+	});
+}
+function destroyCategory(){
+	if(confirm('Do you really want to delete this Category ?'))
+	{
+		if(confirm('This could delete a lot of articles. Still sure ?'))
+		{
+			var catId = $("input[name='category']:checked").val();
+			$.ajax({
+				url: 'categories/'+catId,
+				type: 'DELETE',
+				success: function(msg){
+					location.reload();
+				}
+			});
+		}
+	}
+}
+
 
 //Category to Connectors and Products List
 $("input[name='category']").click(function(){

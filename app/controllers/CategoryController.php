@@ -9,7 +9,8 @@ class CategoryController extends BaseController {
 	 */
 	public function index()
 	{
-		return Category::all();
+		Category::destroy(5);
+		return Category::find(1)->rconnectors;
 	}
 
 
@@ -20,7 +21,7 @@ class CategoryController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('dashboard.create_category');
 	}
 
 
@@ -31,7 +32,17 @@ class CategoryController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$result = ['success' => 0];
+
+		$category = new Category();
+		$category->name = Input::get('name');
+		$category->permalink = Input::get('permalink');
+
+		if($category->save()){
+			$result['success'] = 1;
+		}
+
+		return json_encode($result);
 	}
 
 
@@ -79,12 +90,16 @@ class CategoryController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$result = ['success' => 0];
+		if(Category::destroy($id)){
+			$result['success'] = 1;
+		}
+		return json_encode($result);
 	}
 
 
 	public function getConnectorsList($id){
-		$connectors = Rconnector::where('category_id','=',$id)->get();
+		$connectors = Category::find($id)->rconnectors;
 		return View::make('dashboard.connectors_list')->with('connectors',$connectors);
 	}
 
