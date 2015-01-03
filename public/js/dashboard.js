@@ -101,6 +101,24 @@ function editConnector(){
 function updateConnector(){
 	$('#editConnector').submit();
 }
+function testConnector(){
+	var connId = $("#connectors_list option:selected").val();
+	var form = $('#editConnector');
+	console.log(form.attr('name'));
+	var datas = form.serialize();
+	$.ajax({
+		type: 'POST',
+		url: form.attr('action'),
+		data: datas,
+		success: function(msg){
+			$.get('dashboard/products/'+connId,function(data){
+				$("#testConnector").html(data);
+			});
+		}
+	});
+
+}
+
 //Activate
 function activateProduct(){
 	var prodId = $("input[name=product_activate]:checked").val();
