@@ -8,15 +8,7 @@ function createCategory(){
 }
 function storeCategory(){
 	var form = $('form[name=create_category]');
-	var datas = form.serialize();
-	$.ajax({
-		type: 'POST',
-		url: form.attr('action'),
-		data: datas,
-		success: function(msg){
-			location.reload();
-		}
-	});
+	form.submit();
 }
 function destroyCategory(){
 	if(confirm('Do you really want to delete this Category ?'))
@@ -44,16 +36,19 @@ function editCategory(){
 }
 function updateCategory(){
 	var form = $('form[name=edit_category]');
-	var datas = form.serialize();
-	$.ajax({
-		type: 'POST',
-		url: form.attr('action'),
-		data: datas,
-		success: function(msg){
-			console.log(msg);
-			location.reload();
-		}
-	});
+	form.submit();
+}
+function showCategoryUploadImg(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#categoryImgPreview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 

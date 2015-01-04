@@ -31,17 +31,19 @@ class CategoryController extends BaseController {
 	 */
 	public function store()
 	{
-		$result = ['success' => 0];
-
 		$category = new Category();
 		$category->name = Input::get('name');
 		$category->permalink = Input::get('permalink');
 
-		if($category->save()){
-			$result['success'] = 1;
-		}
+		//Img
+		$category->img_path = $this->storeImg(Input::file('img'));
 
-		return json_encode($result);
+		if($category->save()){
+			return Redirect::route('dashboard')->with('success', 'Category added successfully');
+		}
+		else{
+			return Redirect::route('dashboard')->with('fail', 'Error while adding category');
+		}
 	}
 
 
@@ -78,17 +80,22 @@ class CategoryController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$result = ['success' => 0];
 		$category = Category::find($id);
 		
 		$category->name = Input::get('name');
 		$category->permalink = Input::get('permalink');
 
-		if($category->save()){
-			$result['success'] = 1;
+		//Img
+		if(Input::hasFile('img')){
+			$category->img_path = $this->storeImg(Input::file('img'));
 		}
 
-		return $result;
+		if($category->save()){
+			return Redirect::route('dashboard')->with('success', 'Category updated successfully');
+		}
+		else{
+			return Redirect::route('dashboard')->with('fail', 'Error while updating category');
+		}
 
 	}
 
@@ -112,6 +119,15 @@ class CategoryController extends BaseController {
 	public function getConnectorsList($id){
 		$connectors = Category::find($id)->rconnectors;
 		return View::make('dashboard.connectors_list')->with('connectors',$connectors);
+	}
+
+	public function storeImg($imgFile){
+		$destinationPath = '/img/categories/';
+		$fileName = date('YmdHis');
+		$extension = $imgFile->getClientOriginalExtension();
+		$imgFile->move(public_path().$destinationPath, $fileName.'.'.$extension);
+
+		return $destinationPath.$fileName.'.'.$extension;
 	}
 
 
