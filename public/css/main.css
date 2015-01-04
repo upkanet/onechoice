@@ -1,0 +1,21 @@
+.navbar-lonegood{
+	background-color: #1d8dec;
+	border-color: #1d8dec;
+	border-radius: 0px;
+}
+
+.navbar-lonegood a {
+	color: white;
+}
+
+.navbar-lonegood a:hover{
+	color:black;
+}
+
+.navbar-lonegood a:focus{
+	color:black;
+}
+
+.navbar-lonegood .active{
+	background-color: black;
+}

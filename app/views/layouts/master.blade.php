@@ -4,26 +4,39 @@
 		<meta charset="UTF-8">
 		@section('css')
 		{{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css') }}
+		{{ HTML::style('css/main.css') }}
 		@show
 		<title>@yield('title')</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-lonegood" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="{{ URL::route('home') }}">OneChoice</a>
+					<a class="navbar-brand" href="{{ URL::route('home') }}">
+						{{ HTML::image('img/logo.png') }}
+					</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="#">Living Room</a></li>
-					<li><a href="#">Kitchen</a></li>
-					<li><a href="#">Nomade</a></li>
+					<li class="active"><a href="#">Active</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Dropdown header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					@if(!Auth::check())
 						<li><a href="{{ URL::route('getLogin') }}">Admin</a></li>
 					@else
-						<li><a href="{{ URL::route('dashboard') }}">Dashboard</a></li>
-						<li><a href="{{ URL::route('getLogout') }}">Logout</a></li>
+						<li></li>
+						<li></li>
 					@endif
 				</ul>
 			</div>
@@ -38,7 +51,10 @@
 		@yield('content')
 
 		<div class="container text-center">
-			LoneGood 2015 | Environment : {{ App::environment() }}
+			LoneGood 2015 | Environment : {{ App::environment() }} | <a href="{{ URL::route('dashboard') }}">Dashboard</a>
+			@if(Auth::check())
+			| <a href="{{ URL::route('getLogout') }}">Logout</a>
+			@endif
 		</div>
 
 

@@ -14,9 +14,8 @@ Lone Good - {{ $product->category->name }} - {{ $product->name }}
 	<div class="row" style="background: url('{{ $product->category->img_path }}') no-repeat center center;">
 		<div class="prodshadow">
 			<br>
-			<br>
-			<div class="container">
-				<div class="col-lg-3 text-right">
+			<div class="container prodcontainer">
+				<div class="col-lg-3 text-center">
 					<img src="{{ $product->img_path }}" width="235" height="177" class="imgproduct">
 				</div>
 				<div class="col-lg-9">
