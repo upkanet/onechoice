@@ -56,7 +56,7 @@ Dashboard
 		</div>
 	</div>
 	<div class="col-lg-2">
-		<a href="#" class="btn btn-primary btn-block" id="loadProdListBtn">Load</a><br>
+		<a href="#" class="btn btn-primary btn-block" id="loadProdListBtn" OnClick="listProducts()">Load</a><br>
 		<br>
 		<div class="panel panel-default">
 			<div class="panel-heading">

@@ -1,3 +1,20 @@
+//Shared functions
+function dashSubmitForm(formName){
+	$('form[name='+formName+']').submit();
+}
+function dashGetCategoryId(){
+	return $("input[name='category']:checked").val();
+}
+function dashGetConnectorId(){
+	return $("#connectors_list option:selected").val();
+}
+//modal
+function setDashboardModal(title, body, footer){
+	$('#dashboardModalLabel').html(title);
+	$('#dashboardModalBody').html(body);
+	$('#dashboardModalFooter').html(footer);
+}
+
 //Categories
 function createCategory(){
 	var btnCreateCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeCategory()">Add</button>';
@@ -7,15 +24,14 @@ function createCategory(){
 	$('#dashboardModal').modal('toggle');
 }
 function storeCategory(){
-	var form = $('form[name=create_category]');
-	form.submit();
+	dashSubmitForm('create_category');
 }
 function destroyCategory(){
 	if(confirm('Do you really want to delete this Category ?'))
 	{
 		if(confirm('This could delete a lot of articles. Still sure ?'))
 		{
-			var catId = $("input[name='category']:checked").val();
+			var catId = dashGetCategoryId();
 			$.ajax({
 				url: 'categories/'+catId,
 				type: 'DELETE',
@@ -27,7 +43,8 @@ function destroyCategory(){
 	}
 }
 function editCategory(){
-	var catId = $("input[name='category']:checked").val();
+	//var catId = $("input[name='category']:checked").val();
+	var catId = dashGetCategoryId();
 	$.get('categories/'+catId+'/edit', function(data){
 		var btnEditCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateCategory()">Update</button>';
 		setDashboardModal('Edit Category', data, btnEditCat);
@@ -35,8 +52,9 @@ function editCategory(){
 	$('#dashboardModal').modal('toggle');
 }
 function updateCategory(){
-	var form = $('form[name=edit_category]');
-	form.submit();
+	/*var form = $('form[name=edit_category]');
+	form.submit();*/
+	dashSubmitForm('edit_category');
 }
 function showCategoryUploadImg(input) {
 
@@ -54,7 +72,7 @@ function showCategoryUploadImg(input) {
 
 //Category to Connectors and Products List
 $("input[name='category']").click(function(){
-	var catId = $("input[name='category']:checked").val();
+	var catId = dashGetCategoryId();
 	$.get('dashboard/connectors/'+catId, function(data){
 		$("#connectors_list").html(data);
 	});
@@ -84,11 +102,10 @@ function listProducts(){
 		$("#loadProdListBtn").text("Load");
 	});
 }
-$("#loadProdListBtn").click(listProducts);
 
 //Connectors
 function createConnector(){
-	var catId = $("input[name='category']:checked").val();
+	var catId = dashGetCategoryId();
 	if(typeof catId === 'undefined') catId = '';
 	var btnAdd = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeConnector()">Add</button>';
 
@@ -104,7 +121,7 @@ function storeConnector(){
 	$('#createConnector').submit();
 }
 function editConnector(){
-	var connId = $("#connectors_list option:selected").val();
+	var connId = dashGetConnectorId();
 	if(typeof connId === 'undefined') connId = '';
 	var btnCreate = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateConnector()">Update</button>';
 
@@ -120,9 +137,8 @@ function updateConnector(){
 	$('#editConnector').submit();
 }
 function testConnector(){
-	var connId = $("#connectors_list option:selected").val();
+	var connId = dashGetConnectorId();
 	var form = $('#editConnector');
-	console.log(form.attr('name'));
 	var datas = form.serialize();
 	$.ajax({
 		type: 'POST',
@@ -140,7 +156,7 @@ function destroyConnector(){
 	{
 		if(confirm('This could delete the selected Connector. Still sure ?'))
 		{
-			var connId = $("#connectors_list option:selected").val();
+			var connId = dashGetConnectorId();
 			$.ajax({
 				url: 'dashboard/connectors/'+connId,
 				type: 'DELETE',
@@ -174,12 +190,6 @@ function activateProductSend(prodId){
 	}, 'json');	
 }
 
-//modal
-function setDashboardModal(title, body, footer){
-	$('#dashboardModalLabel').html(title);
-	$('#dashboardModalBody').html(body);
-	$('#dashboardModalFooter').html(footer);
-}
 
 //Product
 function selectProd(name){
@@ -188,7 +198,7 @@ function selectProd(name){
 }
 
 //Permalink
-$('input[name=permalink]').click(function(){
+$('input[name=permalink]').focus(function(){
 	if($(this).val() == ''){
 		$(this).val($('#productName').val().replace(/\s+/g, '-').toLowerCase());
 	}
@@ -200,7 +210,7 @@ $(function() {
 });
 
 $('#createProductSend').click(function(){
-	var catId = $("input[name='category']:checked").val();
+	var catId = dashGetCategoryId();
 	var img = $('.image-editor').cropit('export');
 	$('input[name=category_id]').val(catId);
 	$('input[name=imgdata]').val(img);
