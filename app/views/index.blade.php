@@ -11,7 +11,7 @@ One Choice - Only the Good Product for each Need
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 	<div class="grid">
 		@foreach($products as $product)
 		<figure class="effect-steve">
