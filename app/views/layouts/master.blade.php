@@ -31,14 +31,6 @@
 						</ul>
 					</li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					@if(!Auth::check())
-						<li><a href="{{ URL::route('getLogin') }}">Admin</a></li>
-					@else
-						<li></li>
-						<li></li>
-					@endif
-				</ul>
 			</div>
 		</nav>
 		@if(Session::has('success'))
