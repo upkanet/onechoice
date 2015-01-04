@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Lone Good - {{ $category }} - {{ $product->name }}
+Lone Good - {{ $product->category->name }} - {{ $product->name }}
 @stop
 
 @section('css')
@@ -11,7 +11,7 @@ Lone Good - {{ $category }} - {{ $product->name }}
 
 @section('content')
 <div class="container-fluid">
-	<div class="row bgproduct">
+	<div class="row" style="background: url('{{ $product->category->img_path }}') no-repeat center center;">
 		<div class="prodshadow">
 			<br>
 			<br>
