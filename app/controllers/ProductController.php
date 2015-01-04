@@ -13,6 +13,10 @@ class ProductController extends BaseController{
 
 		$product = Product::where('permalink','=',$permalink)->firstOrFail();
 
+		if($product->img_path == ''){
+			$product->img_path = '/img/products/default.png';
+		}
+
 		if($product->category->img_path == ''){
 			$product->category->img_path = '/img/categories/default.jpg';
 		}

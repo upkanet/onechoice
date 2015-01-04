@@ -18,6 +18,13 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		$products = Product::where('isActive','=',1)->take(12)->get();
+
+		foreach ($products as $product) {
+			if($product->img_path == ''){
+				$product->img_path = '/img/products/default.png';
+			}
+		}
+
 		return View::make('index')
 				->with('products',$products);
 	}
