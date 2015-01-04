@@ -18,7 +18,7 @@ Lone Good - {{ $product->category->name }} - {{ $product->name }}
 				<div class="col-lg-3 text-center">
 					<img src="{{ $product->img_path }}" width="240" height="180" class="imgproduct">
 				</div>
-				<div class="col-lg-9">
+				<div class="col-lg-9 hidden-xs hidden-sm hidden-md">
 					<br>
 					<br>
 					<br>
