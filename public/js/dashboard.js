@@ -85,6 +85,8 @@ function listProducts(){
 	});
 }
 $("#loadProdListBtn").click(listProducts);
+
+//Connectors
 function createConnector(){
 	var catId = $("input[name='category']:checked").val();
 	if(typeof catId === 'undefined') catId = '';
@@ -132,7 +134,22 @@ function testConnector(){
 			});
 		}
 	});
-
+}
+function destroyConnector(){
+	if(confirm('Do you really want to delete this Connector ?'))
+	{
+		if(confirm('This could delete the selected Connector. Still sure ?'))
+		{
+			var connId = $("#connectors_list option:selected").val();
+			$.ajax({
+				url: 'dashboard/connectors/'+connId,
+				type: 'DELETE',
+				success: function(msg){
+					location.reload();
+				}
+			});
+		}
+	}
 }
 
 //Activate

@@ -175,4 +175,13 @@ class RconnectorController extends BaseController{
 
 	}
 
+	public function destroy($id)
+	{
+		$result = ['success' => 0];
+		if(Rconnector::destroy($id)){
+			$result['success'] = 1;
+		}
+		return $result;
+	}
+
 }

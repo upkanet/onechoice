@@ -39,7 +39,7 @@ Dashboard
 			</div>
 			<div class="panel-footer">
 				<a href="javascript:createConnector();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
-				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="javascript:destroyConnector();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="javascript:editConnector();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
