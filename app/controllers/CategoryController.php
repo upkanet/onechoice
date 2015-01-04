@@ -9,8 +9,7 @@ class CategoryController extends BaseController {
 	 */
 	public function index()
 	{
-		Category::destroy(5);
-		return Category::find(1)->rconnectors;
+		//
 	}
 
 
@@ -66,7 +65,8 @@ class CategoryController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$category = Category::find($id);
+		return View::make('dashboard.edit_category')->with('category',$category);
 	}
 
 
@@ -78,7 +78,18 @@ class CategoryController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$result = ['success' => 0];
+		$category = Category::find($id);
+		
+		$category->name = Input::get('name');
+		$category->permalink = Input::get('permalink');
+
+		if($category->save()){
+			$result['success'] = 1;
+		}
+
+		return $result;
+
 	}
 
 

@@ -24,7 +24,7 @@ Dashboard
 			<div class="panel-footer">
 				<a href="javascript:createCategory();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
 				<a href="javascript:destroyCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
-				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+				<a href="javascript:editCategory();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
 	</div>

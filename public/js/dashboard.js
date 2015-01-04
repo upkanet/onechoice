@@ -34,6 +34,27 @@ function destroyCategory(){
 		}
 	}
 }
+function editCategory(){
+	var catId = $("input[name='category']:checked").val();
+	$.get('categories/'+catId+'/edit', function(data){
+		var btnEditCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateCategory()">Update</button>';
+		setDashboardModal('Edit Category', data, btnEditCat);
+	});
+	$('#dashboardModal').modal('toggle');
+}
+function updateCategory(){
+	var form = $('form[name=edit_category]');
+	var datas = form.serialize();
+	$.ajax({
+		type: 'POST',
+		url: form.attr('action'),
+		data: datas,
+		success: function(msg){
+			console.log(msg);
+			location.reload();
+		}
+	});
+}
 
 
 //Category to Connectors and Products List
