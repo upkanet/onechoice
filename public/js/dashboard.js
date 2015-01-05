@@ -23,24 +23,29 @@ function createCategory(){
 	});
 	$('#dashboardModal').modal('toggle');
 }
+function createCategoryPermalink(obj){
+	if($(obj).val() == ''){
+		$(obj).val($('form[name=create_category] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
+	}
+}
 function storeCategory(){
 	dashSubmitForm('create_category');
 }
+function getDestroyCategory(){
+	var catName = $('input[name=category]:checked').next('span').html();
+	var btnDelete = '<button class="btn btn-danger" OnClick="destroyCategory()">Delete</button>';
+	setDashboardModal('Delete Category', 'Would you like to delete '+catName+' ?', btnDelete);
+	$('#dashboardModal').modal('toggle');
+}
 function destroyCategory(){
-	if(confirm('Do you really want to delete this Category ?'))
-	{
-		if(confirm('This could delete a lot of articles. Still sure ?'))
-		{
-			var catId = dashGetCategoryId();
-			$.ajax({
-				url: 'categories/'+catId,
-				type: 'DELETE',
-				success: function(msg){
-					location.reload();
-				}
-			});
+	var catId = dashGetCategoryId();
+	$.ajax({
+		url: 'categories/'+catId,
+		type: 'DELETE',
+		success: function(msg){
+			location.reload();
 		}
-	}
+	});
 }
 function editCategory(){
 	//var catId = $("input[name='category']:checked").val();
@@ -50,6 +55,11 @@ function editCategory(){
 		setDashboardModal('Edit Category', data, btnEditCat);
 	});
 	$('#dashboardModal').modal('toggle');
+}
+function editCategoryPermalink(obj){
+	if($(obj).val() == ''){
+		$(obj).val($('form[name=edit_category] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
+	}
 }
 function updateCategory(){
 	/*var form = $('form[name=edit_category]');

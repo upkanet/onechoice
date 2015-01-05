@@ -31,18 +31,40 @@ class CategoryController extends BaseController {
 	 */
 	public function store()
 	{
-		$category = new Category();
-		$category->name = Input::get('name');
-		$category->permalink = Input::get('permalink');
+		$validate = Validator::make(Input::all(), [
+				'name' => 'required',
+				'permalink' => 'required|alpha_dash|unique:categories',
+				'img' => 'mimes:jpeg,png'
+			]);
 
-		//Img
-		$category->img_path = $this->storeImg(Input::file('img'));
-
-		if($category->save()){
-			return Redirect::route('dashboard')->with('success', 'Category added successfully');
+		if($validate->fails()){
+			return Redirect::route('dashboard')
+				->withErrors($validate)
+				->withInput();
 		}
-		else{
-			return Redirect::route('dashboard')->with('fail', 'Error while adding category');
+		else{	
+			$category = new Category();
+			$category->name = Input::get('name');
+			$category->permalink = Input::get('permalink');
+
+			//Img
+			if(Input::hasFile('img'))
+			{
+				$img_info = getimagesize(Input::file('img'));
+				if($img_info[0] == 1920 && $img_info[1] == 273){
+					$category->img_path = $this->storeImg(Input::file('img'));
+				}
+				else{
+					return Redirect::route('dashboard')->with('fail', 'Error the Category Image must be 1920x273.');
+				}
+			}
+
+			if($category->save()){
+				return Redirect::route('dashboard')->with('success', 'Category added successfully');
+			}
+			else{
+				return Redirect::route('dashboard')->with('fail', 'Error while adding category');
+			}
 		}
 	}
 
@@ -68,6 +90,9 @@ class CategoryController extends BaseController {
 	public function edit($id)
 	{
 		$category = Category::find($id);
+		if($category->img_path == ''){
+			$category->img_path = 'http://placehold.it/1920x273';
+		}
 		return View::make('dashboard.edit_category')->with('category',$category);
 	}
 
@@ -80,23 +105,41 @@ class CategoryController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$category = Category::find($id);
-		
-		$category->name = Input::get('name');
-		$category->permalink = Input::get('permalink');
+		$validate = Validator::make(Input::all(), [
+				'name' => 'required',
+				'permalink' => 'required|alpha_dash',
+				'img' => 'mimes:jpeg,png'
+			]);
 
-		//Img
-		if(Input::hasFile('img')){
-			$category->img_path = $this->storeImg(Input::file('img'));
+		if($validate->fails()){
+			return Redirect::route('dashboard')
+				->withErrors($validate)
+				->withInput();
 		}
+		else{	
+			$category = Category::find($id);
+			$category->name = Input::get('name');
+			$category->permalink = Input::get('permalink');
 
-		if($category->save()){
-			return Redirect::route('dashboard')->with('success', 'Category updated successfully');
-		}
-		else{
-			return Redirect::route('dashboard')->with('fail', 'Error while updating category');
-		}
+			//Img
+			if(Input::hasFile('img'))
+			{
+				$img_info = getimagesize(Input::file('img'));
+				if($img_info[0] == 1920 && $img_info[1] == 273){
+					$category->img_path = $this->storeImg(Input::file('img'));
+				}
+				else{
+					return Redirect::route('dashboard')->with('fail', 'Error the Category Image must be 1920x273.');
+				}
+			}
 
+			if($category->save()){
+				return Redirect::route('dashboard')->with('success', 'Category updated successfully');
+			}
+			else{
+				return Redirect::route('dashboard')->with('fail', 'Error while updating category');
+			}
+		}
 	}
 
 

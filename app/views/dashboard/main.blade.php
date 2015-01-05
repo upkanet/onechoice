@@ -10,6 +10,15 @@ Dashboard
 @stop
 
 @section('content')
+	@if($errors->has())
+	<div class="col-lg-12">
+		<div class="alert alert-danger">
+			@foreach($errors->all() as $error)
+			{{ $error }}<br>
+			@endforeach
+		</div>
+	</div>
+	@endif
 	<div class="col-lg-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -17,13 +26,13 @@ Dashboard
 			</div>
 			<div class="panel-body">
 				@foreach ($categories as $item)
-				{{ Form::radio('category', $item->id) }} {{ $item->name }}<br>
+				{{ Form::radio('category', $item->id) }} <span>{{ $item->name }}</span><br>
 				@endforeach
 				{{ Form::token() }}
 			</div>
 			<div class="panel-footer">
 				<a href="javascript:createCategory();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
-				<a href="javascript:destroyCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="javascript:getDestroyCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="javascript:editCategory();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
