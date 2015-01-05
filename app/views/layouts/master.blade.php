@@ -13,7 +13,7 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="{{ URL::route('home') }}">
-						{{ HTML::image('img/logo.png') }}
+						<img src="{{ asset('img/logo.png') }}" alt="Lone Good"/>
 					</a>
 				</div>
 				<ul class="nav navbar-nav">
