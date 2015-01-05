@@ -16,7 +16,7 @@ Lone Good - {{ $product->category->name }} - {{ $product->name }}
 			<br>
 			<div class="container prodcontainer">
 				<div class="col-lg-3 text-center">
-					<img src="{{ $product->img_path }}" width="240" height="180" class="imgproduct">
+					<img src="{{ $product->img_path }}" width="240" height="180" class="imgproduct" />
 				</div>
 				<div class="col-lg-9 hidden-xs hidden-sm hidden-md">
 					<br>
@@ -57,9 +57,9 @@ Lone Good - {{ $product->category->name }} - {{ $product->name }}
 				<h3 class="panel-title"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Read more</h3>
 			</div>
 			<div class="panel-body">
-				<a href="{{ $product->art1_url }}" target="_new">{{ $product->art1 }}</a><br>
-				<a href="{{ $product->art2_url }}" target="_new">{{ $product->art2 }}</a><br>
-				<a href="{{ $product->art3_url }}" target="_new">{{ $product->art3 }}</a><br>
+				<a href="{{ $product->art1_url }}" target="_blank">{{ $product->art1 }}</a><br>
+				<a href="{{ $product->art2_url }}" target="_blank">{{ $product->art2 }}</a><br>
+				<a href="{{ $product->art3_url }}" target="_blank">{{ $product->art3 }}</a><br>
 			</div>
 		</div>
 	</div>
