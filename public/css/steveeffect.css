@@ -3,7 +3,7 @@
 	clear: both;
 	margin: 0 auto;
 	padding: 1em 0 4em;
-	max-width: 1535px;
+	max-width: 1334px;
 	list-style: none;
 	text-align: center;
 }
@@ -14,9 +14,9 @@
 	float: left;
 	overflow: hidden;
 	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 480px;
-	max-height: 360px;
+	min-width: 160px;
+	max-width: 240px;
+	max-height: 180px;
 	width: 48%;
 	height: auto;
 	background: #3085a3;
@@ -81,7 +81,7 @@
 
 .grid figure p {
 	letter-spacing: 1px;
-	font-size: 68.5%;
+	font-size: 60%;
 }
 
 
@@ -123,8 +123,8 @@ figure.effect-steve img {
 	opacity: 1;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
-	-webkit-transform: perspective(1535px) translate3d(0,0,0);
-	transform: perspective(1535px) translate3d(0,0,0);
+	-webkit-transform: perspective(1334px) translate3d(0,0,0);
+	transform: perspective(1334px) translate3d(0,0,0);
 }
 
 figure.effect-steve h2,
@@ -135,8 +135,9 @@ figure.effect-steve p {
 
 figure.effect-steve h2 {
 	position: relative;
-	margin-top: 2em;
+	margin-top: 0.5em;
 	padding: 0.25em;
+	font-size: 20px;
 }
 
 figure.effect-steve h2:before {
@@ -159,8 +160,8 @@ figure.effect-steve:hover:before {
 }
 
 figure.effect-steve:hover img {
-	-webkit-transform: perspective(1535px) translate3d(0,0,21px);
-	transform: perspective(1535px) translate3d(0,0,21px);
+	-webkit-transform: perspective(1334px) translate3d(0,0,21px);
+	transform: perspective(1334px) translate3d(0,0,21px);
 }
 
 figure.effect-steve:hover h2:before {

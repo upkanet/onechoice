@@ -23,6 +23,86 @@ One Choice - Only the Good Product for each Need
 			</figcaption>			
 		</figure>
 		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
+		@foreach($products as $product)
+		<figure class="effect-steve">
+			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			<figcaption>
+				<h2>{{ $product->category->name }}</h2>
+				<p>{{ $product->name }}</p>
+				<a href="{{ $product->category->permalink.'/'.$product->permalink }}">View more</a>
+			</figcaption>			
+		</figure>
+		@endforeach
 	</div>
 </div>
 @stop
