@@ -34,7 +34,7 @@ class CategoryController extends BaseController {
 		$validate = Validator::make(Input::all(), [
 				'name' => 'required',
 				'permalink' => 'required|alpha_dash|unique:categories',
-				'img' => 'mimes:jpeg,png'
+				'img' => 'image|max:200'
 			]);
 
 		if($validate->fails()){
@@ -108,7 +108,7 @@ class CategoryController extends BaseController {
 		$validate = Validator::make(Input::all(), [
 				'name' => 'required',
 				'permalink' => 'required|alpha_dash',
-				'img' => 'mimes:jpeg,png'
+				'img' => 'image|max:200'
 			]);
 
 		if($validate->fails()){
