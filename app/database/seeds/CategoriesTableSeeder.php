@@ -9,7 +9,7 @@ class CategoriesTableSeeder extends Seeder {
 			'name' => 'TV',
 			'permalink' => 'tv'
 		));
-		Category::create(array(
+		$category = Category::create(array(
 			'name' => 'PC',
 			'permalink' => 'pc'
 		));

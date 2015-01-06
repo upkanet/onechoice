@@ -15,4 +15,10 @@ class BaseController extends Controller {
 		}
 	}
 
+	public function __construct()
+	{
+		$rooms = Room::all();
+		View::share('rooms',$rooms);
+	}
+
 }

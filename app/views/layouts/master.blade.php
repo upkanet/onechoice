@@ -17,19 +17,17 @@
 					</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Active</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Dropdown <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Dropdown header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
+					<li class="active"><a href="#">All</a></li>
+					@foreach($rooms as $room)
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $room->name }} <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							@foreach($room->categories as $category)
+							<li><a href="{{ $category->permalink }}">{{ $category->name }}</a></li>
+							@endforeach
 						</ul>
 					</li>
+					@endforeach
 				</ul>
 			</div>
 		</nav>
