@@ -22,6 +22,9 @@ Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLog
 //Category
 Route::resource('categories','CategoryController');
 
+//Rooms
+Route::get('room/{room}',['as' => 'showRoom','uses' => 'RoomController@show']);
+
 //Product
 Route::get('{category}/{permalink}', ['uses' => 'ProductController@show']);
 

@@ -17,16 +17,9 @@
 					</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">All</a></li>
+					<li{{ Request::is('/') ? ' class="active"' : '' }}><a href="{{ asset('') }}">All</a></li>
 					@foreach($rooms as $room)
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $room->name }} <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							@foreach($room->categories as $category)
-							<li><a href="{{ $category->permalink }}">{{ $category->name }}</a></li>
-							@endforeach
-						</ul>
-					</li>
+					<li{{ Request::is('room/'.$room->permalink) ? ' class="active"' : '' }}><a href="{{ asset('room/'.$room->permalink) }}">{{ $room->name }}</a></li>
 					@endforeach
 				</ul>
 			</div>
