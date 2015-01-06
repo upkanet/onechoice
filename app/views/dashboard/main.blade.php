@@ -22,11 +22,27 @@ Dashboard
 	<div class="col-lg-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
+				<h3 class="panel-title">Rooms</h3>
+			</div>
+			<div class="panel-body">
+				@foreach ($rooms as $room)
+				{{ Form::radio('room', $room->id) }} <span>{{ $room->name }}</span><br>
+				@endforeach
+				{{ Form::token() }}
+			</div>
+			<div class="panel-footer">
+				<a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
+				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<h3 class="panel-title">Categories</h3>
 			</div>
 			<div class="panel-body">
-				@foreach ($categories as $item)
-				{{ Form::radio('category', $item->id) }} <span>{{ $item->name }}</span><br>
+				@foreach ($categories as $category)
+				{{ Form::radio('category', $category->id) }} <span>{{ $category->name }}</span><br>
 				@endforeach
 				{{ Form::token() }}
 			</div>

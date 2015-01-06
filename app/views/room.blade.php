@@ -13,13 +13,13 @@ One Choice - Only the Good Product for each Need
 @section('content')
 <div class="container-fluid">
 	<div class="grid">
-		@foreach($products as $product)
+		@foreach($categories as $category)
 		<figure class="effect-steve">
-			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			{{ HTML::image($category->product->img_path, $category->product->name, array('width' => '480')) }}
 			<figcaption>
-				<h2>{{ $product->category->name }}</h2>
-				<p>{{ $product->name }}</p>
-				<a href="{{ asset($product->category->permalink.'/'.$product->permalink) }}">View more</a>
+				<h2>{{ $category->name }}</h2>
+				<p>{{ $category->product->name }}</p>
+				<a href="{{ asset($category->permalink.'/'.$category->product->permalink) }}">View more</a>
 			</figcaption>			
 		</figure>
 		@endforeach

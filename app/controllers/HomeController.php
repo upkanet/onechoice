@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$products = Product::where('isActive','=',1)->take(15)->get();
+		$products = Product::active()->take(15)->get();
 
 		foreach ($products as $product) {
 			if($product->img_path == ''){

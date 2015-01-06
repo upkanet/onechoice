@@ -44,16 +44,8 @@ class RoomController extends \BaseController {
 	public function show($permalink)
 	{
 		$categories = Room::where('permalink','=',$permalink)->firstOrFail()->categories;
-		$products = array();
-		foreach ($categories as $category) {
-			foreach ($category->products as $product) {
-				if($product->isActive){
-					$products[] = $product;
-				}
-			}
-		}
 		return View::make('room')
-				->with('products', $products);
+				->with('categories', $categories);
 	}
 
 

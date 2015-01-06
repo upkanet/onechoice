@@ -15,7 +15,7 @@ One Choice - Only the Good Product for each Need
 	<div class="grid">
 		@foreach($products as $product)
 		<figure class="effect-steve">
-			{{ HTML::image($product->img_path, 'a picture', array('width' => '480')) }}
+			{{ HTML::image($product->img_path, $product->name, array('width' => '480')) }}
 			<figcaption>
 				<h2>{{ $product->category->name }}</h2>
 				<p>{{ $product->name }}</p>
