@@ -99,4 +99,12 @@ class ProductController extends BaseController{
 		$affectedRows = Product::activated()->where('category_id','=',$category_id)->update(['isActive' => 0]);
 	}
 
+	public function search($room,$q){
+		$products = DB::table('products')->leftJoin('categories','products.category_id','=','categories.id')->leftJoin('category_room','categories.id','=','category_room.category_id');
+		if($room > 0 ) { $products = $products->leftJoin('rooms','category_room.room_id','=','rooms.id')->where('rooms.id','=',$room);}
+		$products = $products->where('isActive','=',1)->where('products.name','LIKE','%'.$q.'%')->select('products.name as pName','products.permalink as pLink','products.img_path as pImg','categories.name as cName','categories.permalink as cLink')->get();
+
+		return $products;
+	}
+
 }

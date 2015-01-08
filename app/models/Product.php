@@ -8,6 +8,11 @@ class Product extends Eloquent{
 		return $this->belongsTo('Category');
 	}
 
+	public function rooms()
+	{
+		return $this->category->rooms()->get();
+	}
+
 	public function scopeActive($query)
 	{
 		return $query->where('isActive','=',1);

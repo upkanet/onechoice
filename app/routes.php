@@ -19,6 +19,9 @@ Route::get('login', array('as' => 'getLogin', 'before' => 'guest', 'uses' => 'Us
 Route::get('logout', array('as' => 'getLogout', 'before' => 'auth', 'uses' => 'UserController@getLogout'));
 Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLogin'));
 
+//Search
+Route::get('search/{room}/{q}',['uses' => 'ProductController@search']);
+
 //Category
 Route::resource('categories','CategoryController');
 
@@ -43,3 +46,10 @@ Route::post('dashboard/products/store', ['as' => 'storeProduct', 'uses' => 'Prod
 Route::get('dashboard/products_by_cat/{category_id}', ['as' => 'indexProduct', 'uses' => 'ProductController@index']);
 Route::get('dashboard/activate/{product_id}', ['as' => 'activateProductForm', 'uses' => 'ProductController@activateForm']);
 Route::post('dashboard/activate/{product_id}', ['as' => 'activateProduct', 'uses' => 'ProductController@activate']);
+
+
+/* Listener */
+Event::listen('illuminate.query',function($query, $bindings, $time, $name){
+	//var_dump($query);
+	//var_dump($bindings);
+});
