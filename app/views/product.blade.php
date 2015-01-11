@@ -7,6 +7,11 @@
 @section('css')
 	@parent
 	{{ HTML::style('css/product.css') }}
+	{{ HTML::style('css/steveeffect.css') }}
+@stop
+
+@section('navbar-searchengine')
+	@include('layouts.navbar-searchengine')
 @stop
 
 @section('content')

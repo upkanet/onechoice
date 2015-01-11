@@ -11,5 +11,6 @@
 			<li{{ Request::is('room/'.$room->permalink) ? ' class="active"' : '' }}><a href="{{ asset('room/'.$room->permalink) }}">{{ $room->name }}</a></li>
 			@endforeach
 		</ul>
+		@yield('navbar-searchengine')
 	</div>
 </nav>

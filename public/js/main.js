@@ -7,7 +7,7 @@ function searchProduct(rootDir){
 		var resultDiv = $('#content');
 		var htmlResult = "";
 		data.forEach(function(element,index,array){
-			htmlResult += '<figure class="effect-steve"><img src="' + element.pImg + '" width="480" alt="' + element.pName + '"><figcaption><h2>' + element.cName + '</h2><p>' + element.pName + '</p><a href="' + element.cLink + '/' + element.pLink + '">View more</a></figcaption></figure>';
+			htmlResult += '<figure class="effect-steve"><img src="' + element.pImg + '" width="480" alt="' + element.pName + '"><figcaption><h2>' + element.cName + '</h2><p>' + element.pName + '</p><a href="' + rootDir + element.cLink + '/' + element.pLink + '">View more</a></figcaption></figure>';
 		});
 		resultDiv.html('<div class="container-fluid"><div class="grid" id="searchThumb"></div></div>');
 		var searchThumb = $('#searchThumb');

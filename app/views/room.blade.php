@@ -10,6 +10,10 @@
 	{{ HTML::style('css/steveeffect.css') }}
 @stop
 
+@section('searchengine')
+	@include('layouts.searchengine')
+@stop
+
 @section('content')
 <div class="container-fluid">
 	<div class="grid">
