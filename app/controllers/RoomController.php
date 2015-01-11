@@ -43,8 +43,10 @@ class RoomController extends \BaseController {
 	 */
 	public function show($permalink)
 	{
-		$categories = Room::where('permalink','=',$permalink)->firstOrFail()->categories;
+		$room = Room::where('permalink','=',$permalink)->firstOrFail();
+		$categories = $room->categories;
 		return View::make('room')
+				->with('room', $room)
 				->with('categories', $categories);
 	}
 

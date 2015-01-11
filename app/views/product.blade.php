@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Lone Good - {{ $product->category->name }} - {{ $product->name }}
+{{ $product->category->name }} - {{ $product->name }}
 @stop
 
 @section('css')

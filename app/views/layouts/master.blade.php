@@ -2,11 +2,12 @@
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 		@section('css')
 		{{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css') }}
 		{{ HTML::style('css/main.css') }}
 		@show
-		<title>@yield('title')</title>
+		<title>LoneGood - @yield('title')</title>
 	</head>
 	<body>
 		@include('layouts.navbar', ['rooms' => $rooms, 'current_room_id' => $current_room_id])

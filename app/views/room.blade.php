@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-One Choice - Only the Good Product for each Need
+{{ $room->name }}
 @stop
 
 @section('css')
