@@ -18,10 +18,8 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li{{ Request::is('/') ? ' class="active"' : '' }}><a href="{{ asset('') }}">All</a></li>
-					<?php if(Request::is('/')){$current_room_id = 0;}?>
 					@foreach($rooms as $room)
 					<li{{ Request::is('room/'.$room->permalink) ? ' class="active"' : '' }}><a href="{{ asset('room/'.$room->permalink) }}">{{ $room->name }}</a></li>
-					<?php if(Request::is('room/'.$room->permalink)){$current_room_id = $room->id;}?>
 					@endforeach
 				</ul>
 				<form class="navbar-form navbar-right">

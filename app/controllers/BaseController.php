@@ -18,8 +18,14 @@ class BaseController extends Controller {
 	public function __construct()
 	{
 		$rooms = Room::all();
-		
+		$current_room_id = 0;
+
+		foreach ($rooms as $room) {
+			if(Request::is('room/'.$room->permalink)){$current_room_id = $room->id;}
+		}
+
 		View::share('rooms',$rooms);
+		View::share('current_room_id',$current_room_id);
 	}
 
 }
