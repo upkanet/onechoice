@@ -11,9 +11,5 @@
 			<li{{ Request::is('room/'.$room->permalink) ? ' class="active"' : '' }}><a href="{{ asset('room/'.$room->permalink) }}">{{ $room->name }}</a></li>
 			@endforeach
 		</ul>
-		<form class="navbar-form navbar-right">
-		  <input type="hidden" name="current_room_id" value="{{ $current_room_id }}">
-	      <input type="text" class="form-control col-lg-8" placeholder="Search" id="searchInput" OnKeyup="searchProduct('{{ asset('') }}')">
-	    </form>
 	</div>
 </nav>

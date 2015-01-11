@@ -20,6 +20,7 @@ Don't be spoilt for choice anymore
 		<h4>We have selected only <b>one</b> product, for each of your needs.</h4>
 		<p>Not the best and expensive one, neither the low quality cheapest one : we choosed the <b>GOOD</b> product with best value.</p>
 		<h4>Don't be spoilt for choice anymore !</h4>
+		<p><i>- JD, LoneGood CEO</i></p>
 	</div>
 </div>
 <div class="container-fluid">

@@ -20,7 +20,7 @@ Route::get('logout', array('as' => 'getLogout', 'before' => 'auth', 'uses' => 'U
 Route::post('login', array('before' => 'csrf', 'uses' => 'UserController@postLogin'));
 
 //Search
-Route::get('search/{room}/{q}',['uses' => 'ProductController@search']);
+Route::get('search/{room}',['uses' => 'ProductController@search']);
 
 //Category
 Route::resource('categories','CategoryController');

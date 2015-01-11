@@ -17,8 +17,9 @@ function searchProduct(rootDir){
 
 function getSearchResult(rootDir,q,room){
 	return $.ajax({
-		url: rootDir+'search/'+room+'/'+q,
+		url: rootDir+'search/'+room,
 		type: 'GET',
+		data: {'q': q},
 		dataType: 'json'
 	});
 }

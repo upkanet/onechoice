@@ -18,6 +18,7 @@
 		@elseif(Session::has('info'))
 			<div class="alert alert-info">{{ Session::get('info') }}</div>
 		@endif
+		@include('layouts.searchengine')
 		<div id="content">
 			@yield('content')
 		</div>
