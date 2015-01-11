@@ -48,8 +48,3 @@ Route::get('dashboard/activate/{product_id}', ['as' => 'activateProductForm', 'u
 Route::post('dashboard/activate/{product_id}', ['as' => 'activateProduct', 'uses' => 'ProductController@activate']);
 
 
-/* Listener */
-Event::listen('illuminate.query',function($query, $bindings, $time, $name){
-	//var_dump($query);
-	//var_dump($bindings);
-});
