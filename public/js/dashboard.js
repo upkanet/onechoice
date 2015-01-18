@@ -320,10 +320,18 @@ $(function() {
 	$('.image-editor').cropit();
 });
 
-$('#createProductSend').click(function(){
+$('#createProductSend').click(createProduct);
+
+function createProduct(){
 	var catId = dashGetCategoryId();
-	var img = $('.image-editor').cropit('export');
-	$('input[name=category_id]').val(catId);
-	$('input[name=imgdata]').val(img);
-	$('#createProductForm').submit();	
-});
+
+	if(catId == undefined){
+		alert('Please select a Category');
+	}
+	else{
+		var img = $('.image-editor').cropit('export');
+		$('input[name=category_id]').val(catId);
+		$('input[name=imgdata]').val(img);
+		$('#createProductForm').submit();
+	}
+}
