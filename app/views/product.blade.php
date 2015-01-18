@@ -69,7 +69,7 @@
 		</div>
 	</div>
 	<div class="col-lg-3 col-lg-offset-1">
-		<a href="{{ $product->merchantlink->link }}" class="btn btn-primary btn-lg  btn-block">Buy</a>
+		<a href="{{ $product->merchantlink->link }}" target="_new" class="btn btn-primary btn-lg  btn-block">Buy</a>
 		<p class="text-center"><small><em>with {{ $product->merchantlink->merchant }}</em></small></p>
 	</div>
 </div>

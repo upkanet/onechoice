@@ -5,15 +5,16 @@
 	{{Form::open(['url' => 'dashboard/products/store', 'method' => 'post', 'id' => 'createProductForm', 'name' => 'create_product'])}}
 		{{Form::hidden('category_id','')}}
 		<div class="panel-body">
-			<div class="col-lg-6">
-				<div class="form-group">
-					<a href="#" id="googleLink" class="btn btn-info btn-block" target="_new">Google It</a>
-				</div>
+			<div class="col-lg-6">				
 				<div class="form-group">
 					{{Form::text('name','', array('class' => 'form-control', 'placeholder' => 'Name', 'id' => 'productName'))}}
 				</div>
 				<div class="form-group">
 					{{Form::text('permalink','', array('class' => 'form-control', 'placeholder' => 'permalink', 'OnFocus' => 'generatePermalink(this)'))}}
+				</div>
+				<div class="form-group">
+					<a href="javascript:searchProdImage();" class="btn btn-info btn-block"><span class="glyphicon glyphicon-picture"
+					></span> Search Image</a>
 				</div>
 				<div class="form-group" id="imgform">
 					{{Form::label('product_img', 'Product image')}}
@@ -27,12 +28,20 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<a href="javascript:searchProdMerchant();" class="btn btn-info btn-block"><span class="glyphicon glyphicon-euro"
+					></span> Search Merchant Link</a>
+				</div>
+				<div class="form-group">
 					{{Form::label('merchant', 'Merchant')}}
 					{{Form::text('merchant_name','', array('class' => 'form-control', 'placeholder' => 'Merchant Name'))}}
 					{{Form::text('merchant_link','', array('class' => 'form-control', 'placeholder' => 'Merchant Link'))}}
 				</div>
 			</div>
 			<div class="col-lg-6">
+				<div class="form-group">
+					<a href="javascript:searchProdArticles();" class="btn btn-info btn-block"><span class="glyphicon glyphicon-search"
+					></span> Search Articles</a>
+				</div>
 				<div class="form-group">
 					{{Form::label('arguments', 'Arguments')}}
 					{{Form::text('argument1','', array('class' => 'form-control', 'placeholder' => 'Argument #1'))}}

@@ -8,8 +8,14 @@ function dashGetRoomId(){
 function dashGetCategoryId(){
 	return $("input[name='category']:checked").val();
 }
+function dashGetCategoryName(){
+	return $('input[name=category]:checked').next('span').html();
+}
 function dashGetConnectorId(){
 	return $("#connectors_list option:selected").val();
+}
+function dashGetConnectorName(){
+	return $("#connectors_list option:selected").html();
 }
 function dashGetProductId(){
 	return $("input[name=product_activate]:checked").val();
@@ -23,6 +29,14 @@ function generatePermalink(obj){
 	if($(obj).val() == ''){
 		$(obj).val($('form[name=' + formName + '] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
 	}
+}
+function dashGetConnectors(){
+	var selCon = $("select[name='connectors'] option:selected");
+	var selConList = [];
+	selCon.each(function(index){
+		selConList[index] = $( this ).val();
+	});
+	return selConList.join();
 }
 
 //modal
@@ -63,7 +77,6 @@ function updateRoom(){
 }
 function deleteRoom(){
 	var roomId = dashGetRoomId();
-	console.log(roomId);
 	if(roomId == undefined){
 		alert('Please select a Room to delete.');
 		return false;
@@ -100,20 +113,34 @@ function storeCategory(){
 }
 function editCategory(){
 	var catId = dashGetCategoryId();
-	$.get('categories/'+catId+'/edit', function(data){
-		var btnEditCat = closeButton + dashButton('primary', 'updateCategory','Update');
-		setDashboardModal('Edit Category', data, btnEditCat);
-	});
-	$('#dashboardModal').modal('toggle');
+	var btnEditCat = closeButton + dashButton('primary', 'updateCategory','Update');
+	if(catId == undefined){
+		alert('Please select a Category to edit.');
+		return false;
+	}
+	else{
+		$.get('categories/'+catId+'/edit', function(data){
+			setDashboardModal('Edit Category', data, btnEditCat);
+		});
+		$('#dashboardModal').modal('toggle');
+		return true;
+	}
 }
 function updateCategory(){
 	dashSubmitForm('edit_category');
 }
 function deleteCategory(){
-	var catName = $('input[name=category]:checked').next('span').html();
+	var catName = dashGetCategoryName();
 	var btnDelete = dashButton('danger','destroyCategory','Delete');
-	setDashboardModal('Delete Category', 'Would you like to delete '+catName+' ?', btnDelete);
-	$('#dashboardModal').modal('toggle');
+	if(catName == undefined){
+		alert('Please select a Category to delete.');
+		return false;
+	}
+	else{
+		setDashboardModal('Delete Category', 'Would you like to delete '+catName+' ?', btnDelete);
+		$('#dashboardModal').modal('toggle');
+		return true;
+	}
 }
 function destroyCategory(){
 	var catId = dashGetCategoryId();
@@ -140,7 +167,9 @@ function showCategoryUploadImg(input) {
 
 
 //Category to Connectors and Products List
-$("input[name='category']").click(function(){
+$("input[name='category']").click(loadCategoryElements);
+
+function loadCategoryElements(){
 	var catId = dashGetCategoryId();
 	$.get('dashboard/connectors/'+catId, function(data){
 		$("#connectors_list").html(data);
@@ -149,61 +178,68 @@ $("input[name='category']").click(function(){
 	$.get('dashboard/products_by_cat/'+catId, function(data){
 		$("#products_list_cat").html(data);
 	});
-
-});
-
-//Connectors to Product List
-function getSelectedConnectors(){
-	var selCon = $("select[name='connectors'] option:selected");
-	var selConList = [];
-	selCon.each(function(index){
-		selConList[index] = $( this ).val();
-	});
-	return selConList.join();
-}
-function listProducts(){
-	rconnector_list = getSelectedConnectors();
-
-	$("#loadProdListBtn").html("<span class=\"glyphicon glyphicon-refresh\"></span>");
-
-	$.get('dashboard/products/'+rconnector_list,function(data){
-		$("#products_list").html(data);
-		$("#loadProdListBtn").text("Load");
-	});
 }
 
 //Connectors
 function createConnector(){
 	var catId = dashGetCategoryId();
-	if(typeof catId === 'undefined') catId = '';
 	var btnAdd = closeButton + dashButton('primary','storeConnector','Add');
-
-	if(catId != ''){
-		$.get('dashboard/connectors/create?category_id='+catId, function(data){
-			setDashboardModal('Create Connector', data, btnAdd);
-		});
+	if(catId == undefined){
+		alert('Please select a Category.')
+		return false;
 	}
-	else {setDashboardModal('Create Connector', 'First select a category', closeButton);}
-	$('#dashboardModal').modal('toggle');
+	else{
+		$.get('dashboard/connectors/create?category_id='+catId, function(data){
+			setDashboardModal('Create Connector for '+dashGetCategoryName(), data, btnAdd);
+			$('#dashboardModal').modal('toggle');
+		});
+		return true;
+	}
 }
 function storeConnector(){
 	$('#createConnector').submit();
 }
 function editConnector(){
 	var connId = dashGetConnectorId();
-	if(typeof connId === 'undefined') connId = '';
 	var btnCreate = closeButton + dashButton('primary','updateConnector','Update');
-
-	if(connId != ''){
+	if(connId == undefined){
+		alert('Please select a Connector to edit.');
+		return false;
+	}
+	else{
 		$.get('dashboard/connectors/'+connId+'/edit', function(data){
 			setDashboardModal('Edit Connector', data, btnCreate);
+			$('#dashboardModal').modal('toggle');
 		});
+		return true;
 	}
-	else {setDashboardModal('Edit Connector', 'First select a connector', closeButton);}
-	$('#dashboardModal').modal('toggle');
 }
 function updateConnector(){
 	$('#editConnector').submit();
+}
+function deleteConnector(){
+	var connName = dashGetConnectorName();
+	var catName = dashGetCategoryName();
+	var btnDelete = dashButton('danger','destroyConnector','Delete');
+	if(connName == undefined){
+		alert('Please select a Connector to delete.');
+		return false;
+	}
+	else{
+		setDashboardModal('Delete Connector for ' + catName, 'Would you like to delete '+connName+' from ' + catName + ' ?', btnDelete);
+		$('#dashboardModal').modal('toggle');
+		return true;
+	}
+}
+function destroyConnector(){
+	var connId = dashGetConnectorId();
+	$.ajax({
+		url: 'dashboard/connectors/'+connId,
+		type: 'DELETE',
+		success: function(msg){
+			location.reload();
+		}
+	});
 }
 function testConnector(){
 	var connId = dashGetConnectorId();
@@ -216,25 +252,12 @@ function testConnector(){
 		success: function(msg){
 			$.get('dashboard/products/'+connId,function(data){
 				$("#testConnector").html(data);
+			})
+			.fail(function(xhr, ajaxOptions, thrownError){
+				$("#testConnector").html('<h3>Error</h3><p>'+xhr.status+'</p><br><p>'+thrownError+'</p>');
 			});
 		}
 	});
-}
-function destroyConnector(){
-	if(confirm('Do you really want to delete this Connector ?'))
-	{
-		if(confirm('This could delete the selected Connector. Still sure ?'))
-		{
-			var connId = dashGetConnectorId();
-			$.ajax({
-				url: 'dashboard/connectors/'+connId,
-				type: 'DELETE',
-				success: function(msg){
-					location.reload();
-				}
-			});
-		}
-	}
 }
 
 //Activate
@@ -251,19 +274,45 @@ function activateProductSend(){
 	var prodId = dashGetProductId();
 	$.post('dashboard/activate/'+prodId, function(data){
 		if(data['success']){
+			loadCategoryElements();
 			setDashboardModal('Activate Product','Activated',closeButton);
 		}
 		else{
-
+			alert('Error while activating product');
 		}
 	}, 'json');	
 }
 
+//Connectors to Product List
+function listProducts(){
+	rconnector_list = dashGetConnectors();
+
+	$("#loadProdListBtn").html("<span class=\"glyphicon glyphicon-refresh\"></span>");
+
+	$.get('dashboard/products/'+rconnector_list,function(data){
+		$("#products_list").html(data);
+		$("#loadProdListBtn").text("Load");
+	})
+		.fail(function(){
+			$("#products_list").html('Error');
+		});
+}
 
 //Product
 function selectProd(name){
 	$('#productName').val(name);
-	$('#googleLink').prop("href", 'https://www.google.fr/#q='+name);
+}
+function searchProdArticles(){
+	var q = $('#productName').val();
+	window.open('http://www.google.com/#q='+q);
+}
+function searchProdImage(){
+	var q = $('#productName').val();
+	window.open('http://www.google.com/search?tbm=isch&q='+q);
+}
+function searchProdMerchant(){
+	var q = $('#productName').val();
+	window.open('http://www.amazon.fr/s/?field-keywords='+q);
 }
 
 //Image
