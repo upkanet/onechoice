@@ -2,6 +2,7 @@
 <html lang="{{Config::get('app.locale')}}">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="verification" content="1f0572da05d384917fa943814900b4fa" />
 		<link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 		@section('css')
 		{{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css') }}
