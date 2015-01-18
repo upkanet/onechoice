@@ -3,7 +3,7 @@
 	{{Form::text('name','',['class' => 'form-control', 'placeholder' => 'Name'])}}
 </div>
 <div class="form-group">
-	{{Form::text('permalink','',['class' => 'form-control', 'placeholder' => 'Permalink', 'OnFocus' => 'createRoomPermalink(this)'])}}
+	{{Form::text('permalink','',['class' => 'form-control', 'placeholder' => 'Permalink', 'OnFocus' => 'generatePermalink(this)'])}}
 </div>
 <div class="row">
 	<div class="col-lg-12">

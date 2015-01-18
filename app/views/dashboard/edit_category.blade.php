@@ -3,7 +3,7 @@
 	{{Form::text('name',$category->name,['class' => 'form-control', 'placeholder' => 'Name'])}}
 </div>
 <div class="form-group">
-	{{Form::text('permalink',$category->permalink,['class' => 'form-control', 'placeholder' => 'Permalink', 'OnFocus' => 'editCategoryPermalink(this)'])}}
+	{{Form::text('permalink',$category->permalink,['class' => 'form-control', 'placeholder' => 'Permalink', 'OnFocus' => 'generatePermalink(this)'])}}
 </div>
 <div class="form-group">
 	{{Form::file('img',['class' => 'custom-file-input', 'OnChange' => 'showCategoryUploadImg(this);'])}}

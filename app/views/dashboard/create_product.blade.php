@@ -2,7 +2,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">Create new product</h3>
 		</div>
-	{{Form::open(['url' => 'dashboard/products/store', 'method' => 'post', 'id' => 'createProductForm'])}}
+	{{Form::open(['url' => 'dashboard/products/store', 'method' => 'post', 'id' => 'createProductForm', 'name' => 'create_product'])}}
 		{{Form::hidden('category_id','')}}
 		<div class="panel-body">
 			<div class="col-lg-6">
@@ -13,7 +13,7 @@
 					{{Form::text('name','', array('class' => 'form-control', 'placeholder' => 'Name', 'id' => 'productName'))}}
 				</div>
 				<div class="form-group">
-					{{Form::text('permalink','', array('class' => 'form-control', 'placeholder' => 'permalink'))}}
+					{{Form::text('permalink','', array('class' => 'form-control', 'placeholder' => 'permalink', 'OnFocus' => 'generatePermalink(this)'))}}
 				</div>
 				<div class="form-group" id="imgform">
 					{{Form::label('product_img', 'Product image')}}

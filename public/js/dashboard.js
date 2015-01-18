@@ -18,6 +18,13 @@ var closeButton = '<button type="button" class="btn btn-default" data-dismiss="m
 function dashButton(style, f, txt){
 	return '<button type="button" class="btn btn-' + style + '" OnClick="' + f + '()">' + txt + '</button>';
 }
+function generatePermalink(obj){
+	var formName = $(obj).parents('form').attr('name');
+	if($(obj).val() == ''){
+		$(obj).val($('form[name=' + formName + '] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
+	}
+}
+
 //modal
 function setDashboardModal(title, body, footer){
 	$('#dashboardModalLabel').html(title);
@@ -79,11 +86,6 @@ function destroyRoom(){
 		}
 	});
 }
-function createRoomPermalink(obj){
-	if($(obj).val() == ''){
-		$(obj).val($('form[name=create_room] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
-	}
-} 
 
 //Categories
 function createCategory(){
@@ -93,13 +95,19 @@ function createCategory(){
 	});
 	$('#dashboardModal').modal('toggle');
 }
-function createCategoryPermalink(obj){
-	if($(obj).val() == ''){
-		$(obj).val($('form[name=create_category] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
-	}
-}
 function storeCategory(){
 	dashSubmitForm('create_category');
+}
+function editCategory(){
+	var catId = dashGetCategoryId();
+	$.get('categories/'+catId+'/edit', function(data){
+		var btnEditCat = closeButton + dashButton('primary', 'updateCategory','Update');
+		setDashboardModal('Edit Category', data, btnEditCat);
+	});
+	$('#dashboardModal').modal('toggle');
+}
+function updateCategory(){
+	dashSubmitForm('edit_category');
 }
 function deleteCategory(){
 	var catName = $('input[name=category]:checked').next('span').html();
@@ -116,24 +124,6 @@ function destroyCategory(){
 			location.reload();
 		}
 	});
-}
-function editCategory(){
-	var catId = dashGetCategoryId();
-	$.get('categories/'+catId+'/edit', function(data){
-		var btnEditCat = closeButton + dashButton('primary', 'updateCategory','Update');
-		setDashboardModal('Edit Category', data, btnEditCat);
-	});
-	$('#dashboardModal').modal('toggle');
-}
-function editCategoryPermalink(obj){
-	if($(obj).val() == ''){
-		$(obj).val($('form[name=edit_category] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
-	}
-}
-function updateCategory(){
-	/*var form = $('form[name=edit_category]');
-	form.submit();*/
-	dashSubmitForm('edit_category');
 }
 function showCategoryUploadImg(input) {
 
@@ -275,13 +265,6 @@ function selectProd(name){
 	$('#productName').val(name);
 	$('#googleLink').prop("href", 'https://www.google.fr/#q='+name);
 }
-
-//Permalink
-$('input[name=permalink]').focus(function(){
-	if($(this).val() == ''){
-		$(this).val($('#productName').val().replace(/\s+/g, '-').toLowerCase());
-	}
-});
 
 //Image
 $(function() {
