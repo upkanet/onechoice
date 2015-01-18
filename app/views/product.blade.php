@@ -43,7 +43,7 @@
 	<div class="col-lg-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">7 reasons to buy it</h3>
+				<h3 class="panel-title">{{Lang::get('product.seven_reasons')}}</h3>
 			</div>
 			<div class="panel-body">
 				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> {{ $product->arg1 }}<br>
@@ -59,7 +59,7 @@
 	<div class="col-lg-3 col-lg-offset-1">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Read more</h3>
+				<h3 class="panel-title"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> {{Lang::get('product.read_more')}}</h3>
 			</div>
 			<div class="panel-body">
 				<a href="{{ $product->art1_url }}" target="_blank">{{ $product->art1 }}</a><br>
@@ -69,8 +69,8 @@
 		</div>
 	</div>
 	<div class="col-lg-3 col-lg-offset-1">
-		<a href="{{ $product->merchantlink->link }}" target="_new" class="btn btn-primary btn-lg  btn-block">Buy</a>
-		<p class="text-center"><small><em>with {{ $product->merchantlink->merchant }}</em></small></p>
+		<a href="{{ $product->merchantlink->link }}" target="_new" class="btn btn-primary btn-lg  btn-block">{{Lang::get('product.buy')}}</a>
+		<p class="text-center"><small><em>{{Lang::get('product.with_merchant')}} {{ $product->merchantlink->merchant }}</em></small></p>
 	</div>
 </div>
 @stop

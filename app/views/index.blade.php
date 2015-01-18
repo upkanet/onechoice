@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Don't be spoilt for choice anymore
+{{Lang::get('messages.title')}}
 @stop
 
 @section('css')
@@ -20,11 +20,11 @@ Don't be spoilt for choice anymore
 		<img alt="JD" src="https://media.licdn.com/mpr/mpr/shrink_200_200/p/4/005/0ab/3a9/0d5d928.jpg" class="img-circle img-responsive">
 	</div>
 	<div class="col-lg-10 col-md-10 col-sm-10">
-		<h3>What is <img src="img/plaintext.png" alt="Lone Good"> ?</h3>
-		<h4>We have selected only <b>one</b> product, for each of your needs.</h4>
-		<p>Not the best and expensive one, neither the low quality cheapest one : we choosed the <b>GOOD</b> product with best value.</p>
-		<h4>Don't be spoilt for choice anymore !</h4>
-		<p><i>- JD, LoneGood CEO</i></p>
+		<h3>{{Lang::get('messages.welcome_title')}}<img src="img/plaintext.png" alt="Lone Good"> ?</h3>
+		<h4>{{Lang::get('messages.welcome_line1')}}</h4>
+		<p>{{Lang::get('messages.welcome_line2')}}</p>
+		<h4>{{Lang::get('messages.welcome_line3')}}</h4>
+		<p><i>- {{Lang::get('messages.welcome_signature')}}</i></p>
 	</div>
 </div>
 <div class="container-fluid">

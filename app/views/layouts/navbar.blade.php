@@ -6,7 +6,7 @@
 			</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li{{ Request::is('/') ? ' class="active"' : '' }}><a href="{{ asset('') }}">All</a></li>
+			<li{{ Request::is('/') ? ' class="active"' : '' }}><a href="{{ asset('') }}">{{Lang::get('messages.all_products')}}</a></li>
 			@foreach($rooms as $room)
 			<li{{ Request::is('room/'.$room->permalink) ? ' class="active"' : '' }}><a href="{{ asset('room/'.$room->permalink) }}">{{ $room->name }}</a></li>
 			@endforeach
