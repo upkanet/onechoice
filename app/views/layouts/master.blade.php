@@ -35,6 +35,7 @@
 		{{ HTML::script('//code.jquery.com/jquery-2.1.2.min.js') }}
 		{{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js') }}
 		{{ HTML::script('js/main.js') }}
+		{{ HTML::script('js/googleanalytics.js') }}
 		@show
 	</body>
 </html>
