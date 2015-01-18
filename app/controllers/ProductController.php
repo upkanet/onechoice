@@ -27,35 +27,55 @@ class ProductController extends BaseController{
 	}
 
 	public function store(){
-		$product = new Product();
+		$validate = Validator::make(Input::all(),[
+			'name' => 'required',
+			'permalink' => 'required|alpha_dash|unique:products'
+			]);
 
-		$product->category_id = Input::get('category_id');
-		$product->name = Input::get('name');
-		$product->permalink = Input::get('permalink');
-		
-		$product->img_path = $this->storeProductImg(Input::get('imgdata'));
-
-		$product->arg1 = Input::get('argument1');
-		$product->arg2 = Input::get('argument2');
-		$product->arg3 = Input::get('argument3');
-		$product->arg4 = Input::get('argument4');
-		$product->arg5 = Input::get('argument5');
-		$product->arg6 = Input::get('argument6');
-		$product->arg7 = Input::get('argument7');
-
-		$product->art1 = Input::get('art1');
-		$product->art1_url = Input::get('art1_url');
-		$product->art2 = Input::get('art2');
-		$product->art2_url = Input::get('art2_url');
-		$product->art3 = Input::get('art3');
-		$product->art3_url = Input::get('art3_url');
-
-		if($product->save()){
-			return Redirect::route('dashboard')->with('success','Product added');
+		if($validate->fails()){
+			return Redirect::route('dashboard')
+				->withErrors($validate)
+				->withInput();
 		}
 		else{
-			return Redirect::route('dashboard')->with('error','An error occured while adding product');
+			$product = new Product();
+
+			$product->category_id = Input::get('category_id');
+			$product->name = Input::get('name');
+			$product->permalink = Input::get('permalink');
+			
+			$product->img_path = $this->storeProductImg(Input::get('imgdata'));
+
+			//Merchant
+			$merchantlink = new Merchantlink();
+			$merchantlink->merchant = Input::get('merchant_name');
+			$merchantlink->link = Input::get('merchant_link');
+
+			$product->arg1 = Input::get('argument1');
+			$product->arg2 = Input::get('argument2');
+			$product->arg3 = Input::get('argument3');
+			$product->arg4 = Input::get('argument4');
+			$product->arg5 = Input::get('argument5');
+			$product->arg6 = Input::get('argument6');
+			$product->arg7 = Input::get('argument7');
+
+			$product->art1 = Input::get('art1');
+			$product->art1_url = Input::get('art1_url');
+			$product->art2 = Input::get('art2');
+			$product->art2_url = Input::get('art2_url');
+			$product->art3 = Input::get('art3');
+			$product->art3_url = Input::get('art3_url');
+
+			if($product->save()){
+				$product->merchantlink()->save($merchantlink);
+				return Redirect::route('dashboard')->with('success','Product added');
+			}
+			else{
+				return Redirect::route('dashboard')->with('error','An error occured while adding product');
+			}
+			
 		}
+
 	}
 
 	private function getImg($imgdata){

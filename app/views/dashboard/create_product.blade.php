@@ -26,6 +26,11 @@
 						{{Form::hidden('imgdata','')}}
 					</div>
 				</div>
+				<div class="form-group">
+					{{Form::label('merchant', 'Merchant')}}
+					{{Form::text('merchant_name','', array('class' => 'form-control', 'placeholder' => 'Merchant Name'))}}
+					{{Form::text('merchant_link','', array('class' => 'form-control', 'placeholder' => 'Merchant Link'))}}
+				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="form-group">
