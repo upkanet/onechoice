@@ -250,7 +250,7 @@ function testConnector(){
 		url: form.attr('action'),
 		data: datas,
 		success: function(msg){
-			$.get('dashboard/products/'+connId,function(data){
+			$.get('dashboard/connectors/'+connId+'/tryit',function(data){
 				$("#testConnector").html(data);
 			})
 			.fail(function(xhr, ajaxOptions, thrownError){

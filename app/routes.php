@@ -41,6 +41,7 @@ Route::post('dashboard/connectors/store', array('as' => 'storeConnector', 'uses'
 Route::get('dashboard/connectors/{id}/edit', array('as' => 'editConnector', 'uses' => 'RconnectorController@edit'))->where('id', '[0-9]+');
 Route::put('dashboard/connectors/{id}', array('as' => 'updateConnector', 'uses' => 'RconnectorController@update'))->where('id', '[0-9]+');
 Route::delete('dashboard/connectors/{id}', ['as' => 'destroyConnector', 'uses' => 'RconnectorController@destroy'])->where('id', '[0-9]+');
+Route::get('dashboard/connectors/{id}/tryit', ['as' => 'tryitConnector', 'uses' => 'RconnectorController@tryit'])->where('id', '[0-9]+');
 
 Route::get('dashboard/products/{ids}', array('as' => 'getProducts', 'uses' => 'RconnectorController@getAllProducts'));
 Route::post('dashboard/products/store', ['as' => 'storeProduct', 'uses' => 'ProductController@store']);

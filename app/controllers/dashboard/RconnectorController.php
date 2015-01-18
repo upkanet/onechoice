@@ -184,4 +184,29 @@ class RconnectorController extends BaseController{
 		return $result;
 	}
 
+	public function tryit($id)
+	{
+		$rconnector = Rconnector::find($id);
+		$html = HtmlDomParser::file_get_html($rconnector->prod_list_url);
+
+		$codeFE = '$codeList = '.$rconnector->prod_list_code.';';
+		eval($codeFE);
+		$i = 0;
+
+		foreach ($codeList as $element) {
+			$codeinFEn = '$products_names[] = '.$rconnector->prod_name_code.';';
+			eval($codeinFEn);
+			$codeinFEp = '$products_prices[] = '.$rconnector->prod_price_code.';';
+			eval($codeinFEp);
+			$codeinFEr = '$products_ratings[] = '.$rconnector->prod_rating_code.';';
+			eval($codeinFEr);
+			$i++;
+		}
+
+		var_dump($products_names);
+		var_dump($products_prices);
+		var_dump($products_ratings);
+
+	}
+
 }
