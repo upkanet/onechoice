@@ -6,6 +6,6 @@
 		<span class="label label-danger">not activated</span>
 	@endif
 </p>
-<a href="{{$product->category->permalink}}/{{$product->permalink}}" class="btn btn-primary btn-block" target="_new">Product page</a>
+<a href="{{$product->category->permalink}}/{{$product->permalink}}" class="btn btn-primary btn-block" target="_blank">Product page</a>
 <br>
 <p>Do you really want to activate this product ?</p>

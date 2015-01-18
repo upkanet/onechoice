@@ -69,7 +69,7 @@
 		</div>
 	</div>
 	<div class="col-lg-3 col-lg-offset-1">
-		<a href="{{ $product->merchantlink->link }}" target="_new" class="btn btn-primary btn-lg  btn-block">{{Lang::get('product.buy')}}</a>
+		<a href="{{ $product->merchantlink->link }}" target="_blank" class="btn btn-primary btn-lg  btn-block">{{Lang::get('product.buy')}}</a>
 		<p class="text-center"><small><em>{{Lang::get('product.with_merchant')}} {{ $product->merchantlink->merchant }}</em></small></p>
 	</div>
 </div>
