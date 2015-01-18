@@ -13,6 +13,11 @@ class Product extends Eloquent{
 		return $this->category->rooms()->get();
 	}
 
+	public function merchantlink()
+	{
+		return $this->hasOne('Merchantlink');
+	}
+
 	public function scopeActive($query)
 	{
 		return $query->where('isActive','=',1);

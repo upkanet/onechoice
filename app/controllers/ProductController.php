@@ -96,7 +96,7 @@ class ProductController extends BaseController{
 	}
 
 	private function desactivate($category_id){
-		$affectedRows = Product::activated()->where('category_id','=',$category_id)->update(['isActive' => 0]);
+		$affectedRows = Product::active()->where('category_id','=',$category_id)->update(['isActive' => 0]);
 	}
 
 	public function search($room){

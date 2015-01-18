@@ -31,9 +31,9 @@ Dashboard
 				{{ Form::token() }}
 			</div>
 			<div class="panel-footer">
-				<a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
-				<a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
-				<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+				<a href="javascript:createRoom();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a>
+				<a href="javascript:deleteRoom();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="javascript:editRoom();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -48,7 +48,7 @@ Dashboard
 			</div>
 			<div class="panel-footer">
 				<a href="javascript:createCategory();" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></a> 
-				<a href="javascript:getDestroyCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
+				<a href="javascript:deleteCategory();" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></a> 
 				<a href="javascript:editCategory();" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>

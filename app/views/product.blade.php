@@ -69,8 +69,8 @@
 		</div>
 	</div>
 	<div class="col-lg-3 col-lg-offset-1">
-		<button class="btn btn-primary btn-lg  btn-block">Buy</button>
-		<p class="text-center"><small><em>with Amazon</em></small></p>
+		<a href="{{ $product->merchantlink->link }}" class="btn btn-primary btn-lg  btn-block">Buy</a>
+		<p class="text-center"><small><em>with {{ $product->merchantlink->merchant }}</em></small></p>
 	</div>
 </div>
 @stop

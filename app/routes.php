@@ -26,6 +26,7 @@ Route::get('search/{room}',['uses' => 'ProductController@search']);
 Route::resource('categories','CategoryController');
 
 //Rooms
+Route::resource('rooms','RoomController',['except' => ['show']]);
 Route::get('room/{room}',['as' => 'showRoom','uses' => 'RoomController@show']);
 
 //Product

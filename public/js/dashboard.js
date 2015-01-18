@@ -2,11 +2,21 @@
 function dashSubmitForm(formName){
 	$('form[name='+formName+']').submit();
 }
+function dashGetRoomId(){
+	return $("input[name='room']:checked").val();
+}
 function dashGetCategoryId(){
 	return $("input[name='category']:checked").val();
 }
 function dashGetConnectorId(){
 	return $("#connectors_list option:selected").val();
+}
+function dashGetProductId(){
+	return $("input[name=product_activate]:checked").val();
+}
+var closeButton = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+function dashButton(style, f, txt){
+	return '<button type="button" class="btn btn-' + style + '" OnClick="' + f + '()">' + txt + '</button>';
 }
 //modal
 function setDashboardModal(title, body, footer){
@@ -15,9 +25,69 @@ function setDashboardModal(title, body, footer){
 	$('#dashboardModalFooter').html(footer);
 }
 
+//Rooms
+function createRoom(){
+	var btnCreateRoom = closeButton + dashButton('primary','storeRoom','Add');
+	$.get('rooms/create', function(data){
+		setDashboardModal('Create Room', data, btnCreateRoom);
+	});
+	$('#dashboardModal').modal('toggle');
+}
+function storeRoom(){
+	dashSubmitForm('create_room');
+}
+function editRoom(){
+	var roomId = dashGetRoomId();
+	var btnEditRoom = closeButton + dashButton('primary', 'updateRoom','Update');
+	if(roomId == undefined){
+		alert('Please select a Room to edit.');
+		return false;
+	}
+	else{
+		$.get('rooms/'+roomId+'/edit', function(data){
+			setDashboardModal('Edit Room', data, btnEditRoom);
+		});
+		$('#dashboardModal').modal('toggle');
+		return true;
+	}
+}
+function updateRoom(){
+	dashSubmitForm('edit_room');
+}
+function deleteRoom(){
+	var roomId = dashGetRoomId();
+	console.log(roomId);
+	if(roomId == undefined){
+		alert('Please select a Room to delete.');
+		return false;
+	}
+	else{
+		var roomName = $('input[name=room]:checked').next('span').html();
+		var btnDelete = dashButton('danger','destroyRoom','Delete');
+		setDashboardModal('Delete Room', 'Would you like to delete ' + roomName + ' ?', btnDelete);
+		$('#dashboardModal').modal('toggle');
+		return true;
+	}
+}
+function destroyRoom(){
+	var roomId = dashGetRoomId();
+	$.ajax({
+		url: 'rooms/' + roomId,
+		type: 'DELETE',
+		success: function(msg){
+			location.reload();
+		}
+	});
+}
+function createRoomPermalink(obj){
+	if($(obj).val() == ''){
+		$(obj).val($('form[name=create_room] input[name=name]').val().replace(/\s+/g, '-').toLowerCase());
+	}
+} 
+
 //Categories
 function createCategory(){
-	var btnCreateCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeCategory()">Add</button>';
+	var btnCreateCat = closeButton + dashButton('primary','storeCategory','Add');
 	$.get('categories/create', function(data){
 		setDashboardModal('Create Category', data, btnCreateCat);
 	});
@@ -31,9 +101,9 @@ function createCategoryPermalink(obj){
 function storeCategory(){
 	dashSubmitForm('create_category');
 }
-function getDestroyCategory(){
+function deleteCategory(){
 	var catName = $('input[name=category]:checked').next('span').html();
-	var btnDelete = '<button class="btn btn-danger" OnClick="destroyCategory()">Delete</button>';
+	var btnDelete = dashButton('danger','destroyCategory','Delete');
 	setDashboardModal('Delete Category', 'Would you like to delete '+catName+' ?', btnDelete);
 	$('#dashboardModal').modal('toggle');
 }
@@ -48,10 +118,9 @@ function destroyCategory(){
 	});
 }
 function editCategory(){
-	//var catId = $("input[name='category']:checked").val();
 	var catId = dashGetCategoryId();
 	$.get('categories/'+catId+'/edit', function(data){
-		var btnEditCat = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateCategory()">Update</button>';
+		var btnEditCat = closeButton + dashButton('primary', 'updateCategory','Update');
 		setDashboardModal('Edit Category', data, btnEditCat);
 	});
 	$('#dashboardModal').modal('toggle');
@@ -117,14 +186,14 @@ function listProducts(){
 function createConnector(){
 	var catId = dashGetCategoryId();
 	if(typeof catId === 'undefined') catId = '';
-	var btnAdd = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="storeConnector()">Add</button>';
+	var btnAdd = closeButton + dashButton('primary','storeConnector','Add');
 
 	if(catId != ''){
 		$.get('dashboard/connectors/create?category_id='+catId, function(data){
 			setDashboardModal('Create Connector', data, btnAdd);
 		});
 	}
-	else {setDashboardModal('Create Connector', 'First select a category', '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');}
+	else {setDashboardModal('Create Connector', 'First select a category', closeButton);}
 	$('#dashboardModal').modal('toggle');
 }
 function storeConnector(){
@@ -133,14 +202,14 @@ function storeConnector(){
 function editConnector(){
 	var connId = dashGetConnectorId();
 	if(typeof connId === 'undefined') connId = '';
-	var btnCreate = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="updateConnector()">Update</button>';
+	var btnCreate = closeButton + dashButton('primary','updateConnector','Update');
 
 	if(connId != ''){
 		$.get('dashboard/connectors/'+connId+'/edit', function(data){
 			setDashboardModal('Edit Connector', data, btnCreate);
 		});
 	}
-	else {setDashboardModal('Edit Connector', 'First select a connector', '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');}
+	else {setDashboardModal('Edit Connector', 'First select a connector', closeButton);}
 	$('#dashboardModal').modal('toggle');
 }
 function updateConnector(){
@@ -180,19 +249,19 @@ function destroyConnector(){
 
 //Activate
 function activateProduct(){
-	var prodId = $("input[name=product_activate]:checked").val();
-	
-	var btnActivate = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary" OnClick="activateProductSend(' + prodId + ')">Activate</button>';
+	var prodId = dashGetProductId();
+	var btnActivate = closeButton + dashButton('primary','activateProductSend','Activate');
 
 	$.get('dashboard/activate/'+prodId, function(data){
 		setDashboardModal('Activate Product',data,btnActivate);
 	});
 	$('#dashboardModal').modal('toggle');
 }
-function activateProductSend(prodId){
+function activateProductSend(){
+	var prodId = dashGetProductId();
 	$.post('dashboard/activate/'+prodId, function(data){
 		if(data['success']){
-			setDashboardModal('Activate Product','Activated','<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
+			setDashboardModal('Activate Product','Activated',closeButton);
 		}
 		else{
 
