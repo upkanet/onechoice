@@ -202,11 +202,11 @@ class RconnectorController extends BaseController{
 			eval($codeinFEr);
 			$i++;
 		}
-		echo 'Names';
+		echo 'Names<br>';
 		var_dump($products_names);
-		echo 'Prices';
+		echo 'Prices<br>';
 		var_dump($products_prices);
-		echo 'Ratings';
+		echo 'Ratings<br>';
 		var_dump($products_ratings);
 
 	}
